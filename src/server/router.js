@@ -2,7 +2,7 @@ const express = require('express');
 // const thread = require('../controllers/thread');
 const entry = require('../controllers/entry');
 const debe = require('../controllers/debe');
-// const user = require('../controllers/user');
+const user = require('../controllers/user');
 // const search = require('../controllers/search');
 
 const router = express.Router();
@@ -36,10 +36,10 @@ router.get('/debe', async function(req, res, next) {
 });
 
 /* GET user profile */
-// router.get('/biri/:nick', async function(req, res, next) {
-//   response = await user.getUser(req.params.nick);
-//   res.json(response);
-// });
+router.get('/biri/:nick', async function(req, res, next) {
+  response = await user(req.params.nick);
+  res.json(response);
+});
 
 /* GET search result */
 // router.get('/ara/:query', async function(req, res, next) {
