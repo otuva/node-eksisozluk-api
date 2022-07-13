@@ -60,7 +60,6 @@ module.exports = async (choice, page = 1, channels = false) => {
         }
     }
 
-    console.log(urlPath)
     let response;
     try {
         response = await axios.get(urlPath);
@@ -74,7 +73,6 @@ module.exports = async (choice, page = 1, channels = false) => {
     // const currentPage = parseInt($(".pager").attr("data-currentpage")) || 1;
     const totalTopicCount = parseInt($("#left-index > h2").attr("title").split(" ")[0]);
     const totalPageCount = Math.ceil(totalTopicCount / 50);
-    console.log(totalTopicCount);
 
     const topics = [];
 
