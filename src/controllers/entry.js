@@ -3,6 +3,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const urls = require('../constant/urls');
+const errors = require('../constant/errors');
 const parseEntryDateTime = require('../utils/entry/parseEntryDateTime');
 
 
@@ -19,6 +20,10 @@ module.exports = async (id) => {
 
     const $ = cheerio.load(response.data, { decodeEntities: false });
     const element = $(`li[data-id=${id}]`);
+
+    if (element.length === 0) {
+        return { error: errors.ENTRY.NOT_FOUND };
+    }
 
     const title = $("#title").attr("data-title");
     const body = element.find(".content").html().trim();

@@ -9,7 +9,7 @@ module.exports = (date) => {
     const [updatedAtDate, updatedAtTime] = updatedAt ? updatedAt.split(" ") : [null, null];
     return [
         createdAtDate, 
-        createdAtTime, 
+        createdAtTime ? createdAtTime : null, // first couple of entries don't have time
         updatedAtDate ? updatedAtDate : null, 
         updatedAtTime ? updatedAtTime : null
     ];

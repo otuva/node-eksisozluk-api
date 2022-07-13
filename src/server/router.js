@@ -4,7 +4,7 @@ const entry = require('../controllers/entry');
 const debe = require('../controllers/debe');
 const user = require('../controllers/user');
 const page = require('../controllers/page');
-// const search = require('../controllers/search');
+const search = require('../controllers/search');
 
 const router = express.Router();
 
@@ -43,10 +43,10 @@ router.get('/biri/:nick', async (req, res, next) => {
 });
 
 /* GET search result */
-// router.get('/ara/:query', async (req, res, next) => {
-//   response = await search.getSearch(req.url, req.params.query);
-//   res.json(response);
-// });
+router.get('/ara/:query/:page?', async (req, res, next) => {
+  response = await search(req.params.query, req.params.page);
+  res.json(response);
+});
 
 /* GET autocomplete search result */
 // router.get('/autocomplete/:query', async (req, res, next) => {
