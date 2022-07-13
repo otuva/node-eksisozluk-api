@@ -1,7 +1,9 @@
 // require('dotenv').config();
 
 const api = {
+  name: 'eksisozluk-api',
   endpoint: '/api',
+  port: 3000,
 }
 
 const asyncRequestHeaders = {"X-Requested-With": "XMLHttpRequest"}
