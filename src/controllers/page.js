@@ -5,7 +5,7 @@ const errors = require('../constant/errors');
 const config = require('../config');
 const parseEntryDateTime = require('../utils/entry/parseEntryDateTime');
 
-module.exports = async (nick, page) => {
+module.exports = async (nick, page=1) => {
     let response;
     try {
         // https://eksisozluk.com/son-entryleri?nick=ssg&p=1
@@ -23,18 +23,18 @@ module.exports = async (nick, page) => {
         const currentElement = $(element);
         const entryElement = currentElement.find('li');
 
-        const id = entryElement.attr("data-id");
+        const id = parseInt(entryElement.attr("data-id"));
         const title = currentElement.find("#title").attr("data-title");
         const body = currentElement.find(".content").html().trim();
         const author = entryElement.attr("data-author");
-        const favCount = entryElement.attr("data-favorite-count");
-        const isPinned = entryElement.attr("data-ispinned");
-        const isPinnedOnProfile = entryElement.attr("data-ispinnedonprofile");
-        const inEksiSeyler = entryElement.attr("data-seyler-slug") ? "true" : "false";
-        const commentCount = entryElement.attr("data-comment-count");
+        const favCount = parseInt(entryElement.attr("data-favorite-count"));
+        const isPinned = entryElement.attr("data-ispinned") === "true";
+        const isPinnedOnProfile = entryElement.attr("data-ispinnedonprofile") === "true";
+        const inEksiSeyler = entryElement.attr("data-seyler-slug") ? true : false;
+        const commentCount = parseInt(entryElement.attr("data-comment-count"));
         // fix to the problem stems from eksisozluk -> default picture doesn't have leading 'https:' string in the url
-        const _authorProfilePictureSrc = currentElement.find(".avatar").attr("src")
-        const authorProfilePicture = _authorProfilePictureSrc.startsWith("https://") ? _authorProfilePictureSrc : `https:${_authorProfilePictureSrc}`;
+        let authorProfilePicture = currentElement.find(".avatar").attr("src")
+        authorProfilePicture = authorProfilePicture.startsWith("https://") ? authorProfilePicture : `https:${authorProfilePicture}`;
         const date = currentElement.find("footer > div.info > div.entry-footer-bottom > div.footer-info > div:eq(1) > a").text();
         const [createdAtDate, createdAtTime, updatedAtDate, updatedAtTime] = parseEntryDateTime(date);
 
@@ -65,7 +65,7 @@ module.exports = async (nick, page) => {
     }
 
     // there's pinned entry on the page
-    if (page === '1' && entries.length === 11) {
+    if (page === 1 && entries.length === 11) {
         const pinnedEntry = entries.shift();
         return { pinnedEntry, entries };
     }

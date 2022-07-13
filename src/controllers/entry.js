@@ -28,14 +28,14 @@ module.exports = async (id) => {
     const title = $("#title").attr("data-title");
     const body = element.find(".content").html().trim();
     const author = element.attr("data-author");
-    const favCount = element.attr("data-favorite-count");
-    const isPinned = element.attr("data-ispinned");
-    const isPinnedOnProfile = element.attr("data-ispinnedonprofile");
-    const inEksiSeyler = element.attr("data-seyler-slug") ? "true" : "false";
-    const commentCount = element.attr("data-comment-count");
+    const favCount = parseInt(element.attr("data-favorite-count"));
+    const isPinned = element.attr("data-ispinned") === "true";
+    const isPinnedOnProfile = element.attr("data-ispinnedonprofile") === "true";
+    const inEksiSeyler = element.attr("data-seyler-slug") ? true : false;
+    const commentCount = parseInt(element.attr("data-comment-count"));
     // fix to the problem stems from eksisozluk -> default picture doesn't have leading 'https:' string in the url
-    const _authorProfilePictureSrc = element.find(".avatar").attr("src")
-    const authorProfilePicture = _authorProfilePictureSrc.startsWith("https://") ? _authorProfilePictureSrc : `https:${_authorProfilePictureSrc}`;
+    let authorProfilePicture = element.find(".avatar").attr("src")
+    authorProfilePicture = authorProfilePicture.startsWith("https://") ? authorProfilePicture : `https:${authorProfilePicture}`;
     const date = element.find("footer > div.info > div.entry-footer-bottom > div.footer-info > div:eq(1) > a").text();
     const [createdAtDate, createdAtTime, updatedAtDate, updatedAtTime] = parseEntryDateTime(date);
 

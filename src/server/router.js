@@ -19,8 +19,8 @@ let response;
 // });
 
 /* GET single thread */
-router.get('/:slug', async (req, res, next) => {
-  response = await topic(req.url);
+router.get('/baslik/:slug/:page?', async (req, res, next) => {
+  response = await topic(req.params.slug, req.params.page);
   res.json(response);
 });
 
@@ -56,7 +56,7 @@ router.get('/autocomplete/:query', async (req, res, next) => {
 });
 
 /* GET user entry */
-router.get('/son-entryleri/:nick/:page', async (req, res, next) => {
+router.get('/son-entryleri/:nick/:page?', async (req, res, next) => {
   response = await page(req.params.nick,req.params.page);
   res.json(response);
 });

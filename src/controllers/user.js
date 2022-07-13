@@ -12,14 +12,29 @@ module.exports = async (nick) => {
 
     const $ = cheerio.load(response.data, { decodeEntities: false });
 
-    const totalEntryCount = $("#entry-count-total").text().trim();
-    const userFollowingCount = $("#user-following-count").text().trim();
-    const userFollowerCount = $("#user-follower-count").text().trim();
+    let isUserCaylak = false, isUserLanetli = false, isUserLeyla = false;
+    $("#user-text-badges > li > a").each((index, element) => {
+        const currentElement = $(element);
+
+        if (currentElement.text() === "çaylak") {
+            isUserCaylak = true;
+        }
+        else if (currentElement.text() === "lanetli") {
+            isUserLanetli = true;
+        }
+        else if (currentElement.text() === "leyla") {
+            isUserLeyla = true;
+        }
+    })
+    const totalEntryCount = parseInt($("#entry-count-total").text().trim());
+    const totalPageCount = isUserCaylak === 'true' ? -1 : Math.ceil(totalEntryCount / 10);
+    const userFollowingCount = parseInt($("#user-following-count").text().trim());
+    const userFollowerCount = parseInt($("#user-follower-count").text().trim());
     const karmaLevel = $(".muted").text();
     const pinnedBadges = []
     // fix to the problem stems from eksisozluk -> default picture doesn't have leading 'https:' string in the url
-    const _authorProfilePictureSrc = $(".avatar").attr("src")
-    const authorProfilePicture = _authorProfilePictureSrc.startsWith("https://") ? _authorProfilePictureSrc : `https:${_authorProfilePictureSrc}`;
+    let authorProfilePicture = $(".avatar").attr("src")
+    authorProfilePicture = authorProfilePicture.startsWith("https://") ? authorProfilePicture : `https:${authorProfilePicture}`;
 
     // iterate over pinned badges and push them to the array
     $('.user-profile-badge-item').each((index, element) => {
@@ -35,7 +50,11 @@ module.exports = async (nick) => {
 
     return {
         nick,
+        isUserCaylak,
+        isUserLanetli,
+        isUserLeyla,
         totalEntryCount,
+        totalPageCount,
         userFollowingCount,
         userFollowerCount,
         karmaLevel,

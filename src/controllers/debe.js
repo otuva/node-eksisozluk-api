@@ -21,7 +21,7 @@ module.exports = async () => {
     $(".topic-list").find("li > a").each(async (index, element) => {
         const singleEntry = $(element)
 
-        const id = singleEntry.attr("href").split('/')[2];
+        const id = parseInt(singleEntry.attr("href").split('/')[2]);
         const title = singleEntry.text().trim();
 
         entries.push({
