@@ -18,9 +18,9 @@ module.exports = async (id) => {
     }
 
     const $ = cheerio.load(response.data, { decodeEntities: false });
+    const element = $(`li[data-id=${id}]`);
 
     const title = $("#title").attr("data-title");
-    const element = $(`li[data-id=${id}]`)
     const body = element.find(".content").html().trim();
     const author = element.attr("data-author");
     const favCount = element.attr("data-favorite-count");
