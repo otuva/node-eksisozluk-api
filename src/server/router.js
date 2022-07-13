@@ -32,7 +32,6 @@ router.get('/baslik/:slug/:page?', async (req, res, next) => {
 
 /* GET single entry */
 router.get('/entry/:id', async (req, res, next) => {
-    // console.log(req.params)
     response = await entry(req.params.id);
     res.json(response);
 });
