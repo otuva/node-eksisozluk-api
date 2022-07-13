@@ -1,10 +1,11 @@
 const express = require('express');
-// const thread = require('../controllers/thread');
+const topic = require('../controllers/topic');
 const entry = require('../controllers/entry');
 const debe = require('../controllers/debe');
 const user = require('../controllers/user');
 const page = require('../controllers/page');
 const search = require('../controllers/search');
+const autoComplete = require('../controllers/autoComplete');
 
 const router = express.Router();
 
@@ -18,10 +19,10 @@ let response;
 // });
 
 /* GET single thread */
-// router.get('/baslik/:slug', async (req, res, next) => {
-//   response = await thread.detail(req.url);
-//   res.json(response);
-// });
+router.get('/:slug', async (req, res, next) => {
+  response = await topic(req.url);
+  res.json(response);
+});
 
 /* GET single entry */
 router.get('/entry/:id', async (req, res, next) => {
@@ -49,10 +50,10 @@ router.get('/ara/:query/:page?', async (req, res, next) => {
 });
 
 /* GET autocomplete search result */
-// router.get('/autocomplete/:query', async (req, res, next) => {
-//   response = await search.autoComplete(req.params.query);
-//   res.json(response);
-// });
+router.get('/autocomplete/:query', async (req, res, next) => {
+  response = await autoComplete(req.params.query);
+  res.json(response);
+});
 
 /* GET user entry */
 router.get('/son-entryleri/:nick/:page', async (req, res, next) => {
