@@ -4,6 +4,7 @@ const ENTRY = `${BASE}/entry`;
 const SEARCH = `${BASE}/basliklar/ara?SearchForm.SortOrder=Count&SearchForm.Keywords=`;
 const AUTO_SEARCH = `${BASE}/autocomplete/query?q=`;
 const TOPIC = `${BASE}/basliklar`;
+const TOPIC_CHANNEL = `${BASE}/basliklar/kanal`;
 const USER = `${BASE}/biri`;
 const ENTRY_PAGE = `${BASE}/son-entryleri?nick=`;
 
@@ -14,6 +15,7 @@ const URLS = {
     SEARCH,
     AUTO_SEARCH,
     TOPIC,
+    TOPIC_CHANNEL,
     USER,
     ENTRY_PAGE
 };

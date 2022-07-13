@@ -7,6 +7,10 @@ const ERRORS = {
     },
     SEARCH: {
         NOT_FOUND: "Search returned no results",
+    },
+    TOPIC: {
+        NOT_FOUND: "Topic not found",
+        INVALID: "Topic is invalid",
     }
 }
 
