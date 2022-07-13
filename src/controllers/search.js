@@ -25,7 +25,7 @@ module.exports = async (query, page = 1) => {
             return this.nodeType === 3;
         }).text().trim();
 
-        const totalEntryCount = currentElement.find("small").text() || '1';
+        const totalEntryCount = parseInt(currentElement.find("small").text()) || 1;
         const slug = currentElement.attr("href");
         const topicUrl = `${urls.BASE}${slug}`;
         const id = parseID(slug);
