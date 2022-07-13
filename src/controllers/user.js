@@ -2,10 +2,10 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const urls = require('../constant/urls');
 
-module.exports = async (username) => {
+module.exports = async (nick) => {
     let response;
     try {
-        response = await axios.get(`${urls.USER}/${username}`);
+        response = await axios.get(`${urls.USER}/${nick}`);
     } catch (err) {
         return { error: err.message };
     }
@@ -18,7 +18,7 @@ module.exports = async (username) => {
     const karmaLevel = $(".muted").text();
     const pinnedBadges = []
 
-    $('.user-profile-badge-item').each(function (index, element) {
+    $('.user-profile-badge-item').each((index, element) => {
         const badge = $(element);
         const title = badge.attr('title');
         const imgSrc = badge.find('img').attr('src');
@@ -30,7 +30,7 @@ module.exports = async (username) => {
     });
 
     return {
-        username,
+        nick,
         totalEntryCount,
         userFollowingCount,
         userFollowerCount,
