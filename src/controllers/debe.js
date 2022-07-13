@@ -18,7 +18,7 @@ module.exports = async () => {
 
     const entries = [];
 
-    $(".topic-list").find("li > a").each(async function (index, element) {
+    $(".topic-list").find("li > a").each(async (index, element) => {
         const singleEntry = $(element)
 
         const id = singleEntry.attr("href").split('/')[2];
