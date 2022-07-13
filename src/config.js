@@ -6,10 +6,15 @@ const api = {
   port: 3000,
 }
 
+const user = {
+  autoRetrieveLastEntries : true, // causes two requests instead of one (mimics the behavior of the website)
+}
+
 const asyncRequestHeaders = {"X-Requested-With": "XMLHttpRequest"}
 
 module.exports = {
   api,
+  user,
   asyncRequestHeaders
 };
 // export const apiEnpoint = '/api';

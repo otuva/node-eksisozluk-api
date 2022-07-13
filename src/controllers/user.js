@@ -1,6 +1,8 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const urls = require('../constant/urls');
+const page = require('./page');
+const config = require('../config');
 
 module.exports = async (nick) => {
     let response;
@@ -27,7 +29,7 @@ module.exports = async (nick) => {
         }
     })
     const totalEntryCount = parseInt($("#entry-count-total").text().trim());
-    const totalPageCount = isUserCaylak === 'true' ? -1 : Math.ceil(totalEntryCount / 10);
+    const totalPageCount = isUserCaylak ? -1 : Math.ceil(totalEntryCount / 10);
     const userFollowingCount = parseInt($("#user-following-count").text().trim());
     const userFollowerCount = parseInt($("#user-follower-count").text().trim());
     const karmaLevel = $(".muted").text();
@@ -48,6 +50,8 @@ module.exports = async (nick) => {
         });
     });
 
+    const lastEntries = await page(nick, 1);
+
     return {
         nick,
         isUserCaylak,
@@ -59,6 +63,7 @@ module.exports = async (nick) => {
         userFollowerCount,
         karmaLevel,
         pinnedBadges,
-        authorProfilePicture
+        authorProfilePicture,
+        lastEntries
     };
 };
