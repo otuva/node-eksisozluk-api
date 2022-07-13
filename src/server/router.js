@@ -1,5 +1,6 @@
 const express = require('express');
 const topic = require('../controllers/topic');
+const topicList = require('../controllers/topicList');
 const entry = require('../controllers/entry');
 const debe = require('../controllers/debe');
 const user = require('../controllers/user');
@@ -11,12 +12,17 @@ const router = express.Router();
 
 let response;
 
+/* GET topic listing. */
+router.get('/basliklar/:choice/:page?', async (req, res, next) => {
+  response = await topicList(req.params.choice, req.params.page);
+  res.json(response);
+});
 
-/* GET threads listing. */
-// router.get('/basliklar', async (req, res, next) => {
-//   response = await thread.list(req.url);
-//   res.json(response);
-// });
+/* GET topic channel listing. */
+router.get('/basliklar/kanal/:choice/:page?', async (req, res, next) => {
+  response = await topicList(req.params.choice, req.params.page, true);
+  res.json(response);
+});
 
 /* GET single thread */
 router.get('/baslik/:slug/:page?', async (req, res, next) => {
