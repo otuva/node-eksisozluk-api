@@ -1,11 +1,17 @@
 {
   "name": "eksisozluk-api",
   "version": "0.0.1",
-  "description": "Latest unofficial eksisozluk api",
-  "title": "eksisozluk-api | doc",
+  "description": "Unofficial eksisozluk api",
+  "title": "RTFM",
   "url" : "/api",
-  "header": {
-    "title": "genel",
-    "filename": "./doc/Index.md"
+  "apidoc": {
+    "header": {
+      "title": "giris",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "TLDR",
+      "filename": "footer.md"
+    }
   }
 }
