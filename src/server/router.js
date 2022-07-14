@@ -7,6 +7,7 @@ const user = require('../controllers/user');
 const page = require('../controllers/page');
 const search = require('../controllers/search');
 const autoComplete = require('../controllers/autoComplete');
+const allChannels = require('../controllers/allChannels');
 
 const router = express.Router();
 
@@ -48,6 +49,12 @@ router.get('/biri/:nick', async (req, res, next) => {
   res.json(response);
 });
 
+/* GET user entry */
+router.get('/son-entryleri/:nick/:page?', async (req, res, next) => {
+  response = await page(req.params.nick,req.params.page);
+  res.json(response);
+});
+
 /* GET search result */
 router.get('/ara/:query/:page?', async (req, res, next) => {
   response = await search(req.params.query, req.params.page);
@@ -60,9 +67,9 @@ router.get('/autocomplete/:query', async (req, res, next) => {
   res.json(response);
 });
 
-/* GET user entry */
-router.get('/son-entryleri/:nick/:page?', async (req, res, next) => {
-  response = await page(req.params.nick,req.params.page);
+/* GET all channels */
+router.get('/kanallar', async (req, res, next) => {
+  response = await allChannels();
   res.json(response);
 });
 
