@@ -1,6 +1,4 @@
-kullanici, son entriler endpointini cagirsin. configde bu ozelligi kullansin mi diye sor
-
-/kanal endpointi olustur
+disamb calismiyor duzelt
 
 kullanici badge endpointi
 
@@ -11,7 +9,11 @@ firefox veya chromedan session token parselama secenegi?
 
 ---
 
+~~/kanal endpointi olustur~~
+
 ~~tek bir baslik endpointi~~
+
+~~kullanici, son entriler endpointini cagirsin. configde bu ozelligi kullansin mi diye sor~~
 
 ```
 /basliklar/gundem
