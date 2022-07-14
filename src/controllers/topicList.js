@@ -3,60 +3,31 @@ const cheerio = require("cheerio");
 const urls = require("../constant/urls");
 const parseID = require("../utils/topic/parseID");
 const errors = require('../constant/errors');
+const config = require('../config');
 // const parseEntryDateTime = require('../utils/entry/parseEntryDateTime');
 
 module.exports = async (choice, page = 1, channels = false) => {
-    let urlPath = `${urls.TOPIC}/${choice}?p=${page}`;
+    // this function is used to get topic list 
+    // channels is used to determine whether it is channel or not to reduce code usage
+    // default value of page is 1, if there's no page instead of failing, it will return the first page
+    // switch statement is used to determine the type of topic list instead of giving user a wildcard
+    // hope is that it will be more readable, secure and easier to maintain
+    // it's a better idea to fail immediately if choice is not strictly defined
+    let urlPath = `${urls.TOPIC}/${encodeURIComponent(choice)}?p=${page}`;
 
     // channel mode
     if (channels) {
-        urlPath = `${urls.TOPIC_CHANNEL}/${choice}?p=${page}`;
-        switch (choice) {
-            case "haber":
-            case "sinema":
-            case "bilim":
-            case "eğitim":
-            case "spoiler":
-            case "müzik":
-            case "edebiyat":
-            case "ekonomi":
-            case "tarih":
-            case "yeme-içme":
-            case "ilişkiler":
-            case "siyaset":
-            case "teknoloji":
-            case "sanat":
-            case "moda":
-            case "otomotiv":
-            case "magazin":
-            case "ekşi-sözlük":
-            case "spor":
-            case "motosiklet":
-            case "sağlık":
-            case "oyun":
-            case "anket":
-            case "programlama":
-            case "tv":
-            case "seyahat":
-            case "havacılık":
-            case "troll":
-                null;
-                break;
-            default:
-                return { error: errors.TOPIC.INVALID };
+        urlPath = `${urls.TOPIC_CHANNEL}/${encodeURIComponent(choice)}?p=${page}`;
+        // check if choice is in array
+        if (!config.topic.enabledChannels.includes(choice)) {
+            return { error: errors.TOPIC.INVALID };
         }
     }
     // normal mode
     else {
-        switch (choice) {
-            case "gundem":
-            case "sorunsal":
-            case "tarihte-bugun":
-            case "basiboslar":
-                null;
-                break;
-            default:
-                return { error: errors.TOPIC.INVALID };
+        // check if choice is in array
+        if (!config.topic.enabledSubTopics.includes(choice)) {
+            return { error: errors.TOPIC.INVALID };
         }
     }
 
