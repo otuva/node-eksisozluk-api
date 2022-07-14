@@ -1,9 +1,189 @@
 /**
+ * @api {get} /basliklar/:choice/:page? başlıkları GETir.
+ * @apiName topic
+ * @apiGroup başlık
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/basliklar/gundem
+ * @apiExample {curl} Example curl sayfa:
+ *     curl -i http://localhost:3000/api/basliklar/gundem/2
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/basliklar/gundem")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/basliklar/gundem").then(...)
+ * 
+ * @apiDescription Secilen kategorideki (gündem, tarihte bugun vs.) başlıkları getiren endpoint. 
+ * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
+ * Listenebilecek secenekler config dosyasindan belirlenir.
+ * Baslik kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.
+ * Kanallar icin diger endpointi kullaniniz.
+ * 
+ * @apiParam {String="gundem","sorunsal","tarihte-bugun","basiboslar"} choice getirilecek baslik kategorisi
+ * @apiParam {Number} [page=1] getirilecek sayfa
+ *
+ * @apiSuccess (200) {Number} totalTopicCount toplam baslik adeti.
+ * @apiSuccess (200) {Number} totalPageCount toplam kac sayfa baslik oldugu.
+ * @apiSuccess (200) {Object[]} topics başlık objelerinin arrayi.
+ * @apiSuccess (200) {Number} topics.id basligin id'si
+ * @apiSuccess (200) {String} topics.title basligin ismi
+ * @apiSuccess (200) {String} topics.topicSlug baslik url slug hali
+ * @apiSuccess (200) {String} topics.topicUrl basligin full urli
+ * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "totalTopicCount": 299,
+ * "totalPageCount": 6,
+ * "topics": [
+ *   {
+ *     "id": 7341070,
+ *     "title": "sönmüş kireçle yapılan +18 sanat",
+ *     "topicSlug": "/sonmus-kirecle-yapilan-18-sanat--7341070?a=popular",
+ *     "topicUrl": "https://eksisozluk.com//sonmus-kirecle-yapilan-18-sanat--7341070?a=popular",
+ *     "totalEntryCount": 86
+ *   },
+ *   {
+ *     "id": 7340995,
+ *     "title": "türkiye ermenistan sınırı mayın temizliği",
+ *     "topicSlug": "/turkiye-ermenistan-siniri-mayin-temizligi--7340995?a=popular",
+ *     "topicUrl": "https://eksisozluk.com//turkiye-ermenistan-siniri-mayin-temizligi--7340995?a=popular",
+ *     "totalEntryCount": 128
+ *   },
+ *  ...
+ *  ]
+ * }
+ * 
+ * @apiError TopicNotFound Aranan kategori gecerli ama hicbir baslik bulunamadi.
+ * @apiError TopicIsInvalid Gecerli bir kategori degil.
+ * 
+ * @apiErrorExample {json} api/basliklar/gundem/412:
+ *  {
+ *  "error": "TopicNotFound"
+ *  }
+ * 
+ * @apiErrorExample {json} api/basliklar/gundam:
+ *  {
+ *  "error": "TopicIsInvalid"
+ *  }
+ * 
+ *
+ */
+function topic() { return; }
+
+
+
+
+
+/**
+ * @api {get} /basliklar/kanal/:choice/:page? kanallari GETir.
+ * @apiName topicChannel
+ * @apiGroup başlık
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/basliklar/kanal/haber
+ * @apiExample {curl} Example curl sayfa:
+ *     curl -i http://localhost:3000/api/basliklar/kanal/haber/2
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/basliklar/kanal/haber")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/basliklar/kanal/haber").then(...)
+ * 
+ * @apiDescription Secilen kanala ait (haber, bilim vs.) başlıkları getiren endpoint. 
+ * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
+ * Listenebilecek kanallar config dosyasindan belirlenir.
+ * Kanal kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.
+ * Kanal kategorilerinin turkce karakter icermesine dikkat ediniz. Ornegin 'muzik' kategorisi hata verecekken 'müzik' kategorisi sorunsuz calisacaktir.
+ * 
+ * @apiParam {String="haber","sinema","bilim","eğitim","spoiler","müzik","edebiyat","ekonomi","tarih","yeme-içme","ilişkiler","siyaset","teknoloji","sanat","moda","otomotiv","magazin","ekşi-sözlük","spor","motosiklet","sağlık","oyun","anket","programlama","tv","seyahat","havacılık","troll"} choice getirilecek baslik kategorisi
+ * @apiParam {Number} [page=1] getirilecek sayfa
+ *
+ * @apiSuccess (200) {Number} totalTopicCount toplam baslik adeti.
+ * @apiSuccess (200) {Number} totalPageCount toplam kac sayfa baslik oldugu.
+ * @apiSuccess (200) {Object[]} topics başlık objelerinin arrayi.
+ * @apiSuccess (200) {Number} topics.id basligin id'si
+ * @apiSuccess (200) {String} topics.title basligin ismi
+ * @apiSuccess (200) {String} topics.topicSlug baslik url slug hali
+ * @apiSuccess (200) {String} topics.topicUrl basligin full urli
+ * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "totalTopicCount": 150,
+ * "totalPageCount": 3,
+ * "topics": [
+ *   {
+ *     "id": 7341076,
+ *     "title": "aç insanlar varken teleskopa 10 milyar $ harcamak",
+ *     "topicSlug": "/ac-insanlar-varken-teleskopa-10-milyar-harcamak--7341076",
+ *     "topicUrl": "https://eksisozluk.com//ac-insanlar-varken-teleskopa-10-milyar-harcamak--7341076",
+ *     "totalEntryCount": 38
+ *   },
+ *   {
+ *     "id": 116822,
+ *     "title": "anksiyete",
+ *     "topicSlug": "/anksiyete--116822?day=2022-07-14",
+ *     "topicUrl": "https://eksisozluk.com//anksiyete--116822?day=2022-07-14",
+ *     "totalEntryCount": 5
+ *   },
+ *  ...
+ *  ]
+ * }
+ * 
+ * @apiError TopicNotFound Aranan kategori gecerli ama hicbir baslik bulunamadi.
+ * @apiError TopicIsInvalid Gecerli bir kategori degil.
+ * 
+ * @apiErrorExample {json} api/basliklar/kanal/bilim/17:
+ *  {
+ *  "error": "TopicNotFound"
+ *  }
+ * 
+ * @apiErrorExample {json} api/basliklar/kanal/asd:
+ *  {
+ *  "error": "TopicIsInvalid"
+ *  }
+ * 
+ *
+ */
+function topic() { return; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
  * @api {get} /api/autocomplete/:query autoComplete.
  * @apiName autoComplete
  * @apiGroup search
  * @apiDescription Otomatik tamamlama sağlayan endpoint.
- * @apiVersion 1.0.0
+ * @apiVersion 0.0.1
  *
  * @apiParam {String} nick          kullanıcı nick'i
  *
@@ -39,7 +219,7 @@ function autoComplete() {
  * @apiName GetSearch
  * @apiGroup search
  * @apiDescription site içi arama yapan endpoint.
- * @apiVersion 1.0.0
+ * @apiVersion 0.0.1
  *
  * @apiParam {String} query         arama kelimesi
  *
@@ -84,7 +264,7 @@ function getSearch() {
  * @apiName GetUser
  * @apiGroup user
  * @apiDescription nick ile kullanıcı bilgisi getiren endpoint.
- * @apiVersion 1.0.0
+ * @apiVersion 0.0.1
  *
  * @apiParam {String} nick          kullanıcı nick'i
  *
@@ -120,7 +300,7 @@ function getUser() {
  * @apiName GetEntry
  * @apiGroup entry
  * @apiDescription entry no'su ile entry getiren endpoint.
- * @apiVersion 1.0.0
+ * @apiVersion 0.0.1
  *
  * @apiParam {Number} id            entry no'su.
  *
@@ -160,7 +340,7 @@ function getEntry() {
  * @api {get} /api/debe/  debe GETir.
  * @apiName DEBEGet
  * @apiGroup debe
- * @apiVersion 1.0.0
+ * @apiVersion 0.0.1
  * @apiDescription debeleri getiren endpoint. 
  * debe'deki tüm entry'leri tek tek çekerek getirdiği için getirmesi zaman alır ama
  * bir şekilde getirir. o debe buraya gelecek.
@@ -190,12 +370,11 @@ function debe() {
 }
 
 
-
 /**
  * @api {get} /baslik/:slug tekil başlık GETir.
  * @apiName GetBaslik
  * @apiGroup başlık
- * @apiVersion 1.0.0
+ * @apiVersion 0.0.1
  * @apiDescription Spesifik başlığı entry'leri ile birlikte getiren endpoint. Gönül 
  * isterdi ki basliklari id'si sayesinde getirebilelim ama hayat işte, ey ssg duy sesimizi. endpoint
  * sonlarındaki querystringler aynı ekşideki gibi çalışır. örneğin şükela modu için endpointin sonuna 
@@ -252,57 +431,3 @@ function detail() {
   let va;
 }
 
-/**
- * @api {get} /basliklar/ başlıkları GETir.
- * @apiName GetEntry
- * @apiGroup başlık
- * @apiVersion 1.0.0
- * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/basliklar
- * @apiExample {python} Example python:
- *     import requests as r
- *     req = r.get("http://localhost:3000/api/basliklar")
- * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/basliklar").then(...)
- * 
- * @apiDescription gündemdeki başlıkları getiren endpoint. 
- * efendim tabii isterseniz kanallardaki başlıkları da çekebilirsiniz.
- * bunu yapmak fevkalade basit. Istek yapabilmek için gerekli endpointler:
- * 
- * /basliklar/
- * 
- * 
- * /basliklar/kanal/spor
- * 
- * 
- * başlıkları sayfa sayfa görüntülemek için endpoint'in sonuna şunu koyabilirsiniz: ?p=2
- *
- * @apiSuccess {Array} baslik başlık objelerinin arrayi.
- * @apiSuccess {Number} id başlik id'si.
- * @apiSuccess {String} title başlığın kendisi.
- * @apiSuccess {String} slug başlığın eksisozluk.com'daki url adresi.
- * @apiSuccess {Number} entry_count  başlıktaki entry sayısı.
- *
- * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
- *[
-   {
-    "id": 6303813,
-    "title": "9 kere leyla",
-    "slug": "/9-kere-leyla--6303813?a=popular",
-    "entry_count": "498"
-  },
-  {
-    "id": 6254224,
-    "title": "veda ederken 2020'ye bir not bırak",
-    "slug": "/veda-ederken-2020ye-bir-not-birak--6254224?a=popular",
-    "entry_count": "109"
-  },
- *  ...
- * ]
- * 
- *
- */
-function list() {
-  let va;
-}
