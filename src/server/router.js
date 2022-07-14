@@ -12,15 +12,15 @@ const router = express.Router();
 
 let response;
 
-/* GET topic listing. */
-router.get('/basliklar/:choice/:page?', async (req, res, next) => {
-  response = await topicList(req.params.choice, req.params.page);
-  res.json(response);
-});
-
 /* GET topic channel listing. */
 router.get('/basliklar/kanal/:choice/:page?', async (req, res, next) => {
   response = await topicList(req.params.choice, req.params.page, true);
+  res.json(response);
+});
+
+/* GET topic listing. */
+router.get('/basliklar/:choice/:page?', async (req, res, next) => {
+  response = await topicList(req.params.choice, req.params.page);
   res.json(response);
 });
 
