@@ -18,7 +18,7 @@ module.exports = async () => {
 
     const entries = [];
 
-    $(".topic-list").find("li > a").each(async (index, element) => {
+    $(".topic-list").find("li > a").each((index, element) => {
         const singleEntry = $(element)
         
         const slug = singleEntry.attr("href")
