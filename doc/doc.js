@@ -1,6 +1,6 @@
 /**
  * @api {get} /basliklar/:choice/:page? başlıkları GETir.
- * @apiName topic
+ * @apiName topicList
  * @apiGroup başlık
  * @apiVersion 0.0.1
  * 
@@ -15,9 +15,13 @@
  *     req = axios.get("http://localhost:3000/api/basliklar/gundem").then(...)
  * 
  * @apiDescription Secilen kategorideki (gündem, tarihte bugun vs.) başlıkları getiren endpoint. 
+ * 
  * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
+ * 
  * Listenebilecek secenekler config dosyasindan belirlenir.
+ * 
  * Baslik kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.
+ * 
  * Kanallar icin diger endpointi kullaniniz.
  * 
  * @apiParam {String="gundem","sorunsal","tarihte-bugun","basiboslar"} choice getirilecek baslik kategorisi
@@ -71,15 +75,11 @@
  * 
  *
  */
-function topic() { return; }
-
-
-
-
+function topicList() { return; }
 
 /**
  * @api {get} /basliklar/kanal/:choice/:page? kanallari GETir.
- * @apiName topicChannel
+ * @apiName topicListChannel
  * @apiGroup başlık
  * @apiVersion 0.0.1
  * 
@@ -94,9 +94,13 @@ function topic() { return; }
  *     req = axios.get("http://localhost:3000/api/basliklar/kanal/haber").then(...)
  * 
  * @apiDescription Secilen kanala ait (haber, bilim vs.) başlıkları getiren endpoint. 
+ * 
  * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
+ * 
  * Listenebilecek kanallar config dosyasindan belirlenir.
+ * 
  * Kanal kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.
+ * 
  * Kanal kategorilerinin turkce karakter icermesine dikkat ediniz. Ornegin 'muzik' kategorisi hata verecekken 'müzik' kategorisi sorunsuz calisacaktir.
  * 
  * @apiParam {String="haber","sinema","bilim","eğitim","spoiler","müzik","edebiyat","ekonomi","tarih","yeme-içme","ilişkiler","siyaset","teknoloji","sanat","moda","otomotiv","magazin","ekşi-sözlük","spor","motosiklet","sağlık","oyun","anket","programlama","tv","seyahat","havacılık","troll"} choice getirilecek baslik kategorisi
@@ -150,14 +154,206 @@ function topic() { return; }
  * 
  *
  */
+function topicList() { return; }
+
+/**
+ * @api {get} /baslik/:slug/:page? tekil başlık GETir.
+ * @apiName topic
+ * @apiGroup başlık
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/baslik/pena
+ * @apiExample {curl} Example curl sayfa:
+ *     curl -i http://localhost:3000/api/baslik/pena/2
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/baslik/pena")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/baslik/pena").then(...)
+ * 
+ * @apiDescription Spesifik başlığı entry'leri ile birlikte getiren endpoint. 
+ * slug yerine basliğin kendisini birebir yazarsaniz da calisir: 
+ * 
+ * örneğin: 
+ * `http://localhost:3000/api/baslik/veda ederken 2020'ye bir not bırak`
+ * 
+ * Full slug ise bu sekil gorunur (baslik--id):
+ * `/baslik/pena--31782`
+ * 
+ * Eger baslik slugi full halinde degilse ve `config.topic.allowRedirect` true degerine sahipse tam haline yonlendirir.
+ * 
+ * Ornek:    `http://localhost:3000/api/baslik/insanlık tarihinin en kötü iki senesi 536 ve 537`
+ * 
+ * Son hali: `http://localhost:3000/api/baslik/insanlik-tarihinin-en-kotu-iki-senesi-536-ve-537--7341301/1`
+ * 
+ * @apiParam {String} slug getirilecek baslik
+ * @apiParam {Number} [page=1] getirilecek sayfa
+ *
+ * @apiSuccess (200) {Number} topicID basligin idsi.
+ * @apiSuccess (200) {Object[]} disambiguations farkli anlamlardaki basliklar.
+ * @apiSuccess (200) {String} disambiguations.slug farkli basligin slug hali.
+ * @apiSuccess (200) {String} disambiguations.title farkli basligin ismi.
+ * 
+ * @apiSuccess (200) {String} title başlıgin ismi.
+ * @apiSuccess (200) {String} topicSlug basligin slug hali
+ * @apiSuccess (200) {Number} numberOfPages basligin sahip oldugu sayfa sayisi
+ * @apiSuccess (200) {Number} currentPage baslikta o anda incelenen sayfa. (.pager degeri)
+ * @apiSuccess (200) {String[]} tags basligin tagleri.
+ * 
+ * @apiSuccess (200) {Object[]} entries basliktaki entryler. 
+ * @apiSuccess (200) {Number} entries.id entry id'si.
+ * @apiSuccess (200) {String} entries.title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} entries.body entryin icerigi
+ * @apiSuccess (200) {Number} entries.favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} entries.isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} entries.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} entries.inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} entries.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * 
+ * @apiSuccess (200) {Object} entries.aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} entries.aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} entries.aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * 
+ * @apiSuccess (200) {Object} entries.aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} entries.aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} entries.aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
+ * 
+ * 
+ * 
+ * 
+ * 
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "topicID": 31872,
+ * "disambiguations": [
+ *   {
+ *     "slug": "/?q=c%20%28programlama%20dili%29",
+ *     "title": "c (programlama dili)"
+ *   },
+ *   {
+ *     "slug": "/?q=c%20%28s%c3%b6zl%c3%bck%20yazar%c4%b1%29",
+ *     "title": "c (sözlük yazarı)"
+ *   }
+ * ],
+ * "title": "c",
+ * "topicSlug": "c--31872",
+ * "numberOfPages": 18,
+ * "currentPage": 1,
+ * "tags": [
+ *   "programlama",
+ *   "edebiyat"
+ * ],
+ * "entries": [
+ *   {
+ *     "id": 1062,
+ *     "title": "c",
+ *     "body": "yıllar yılı ortamlarda şöyle yada böyle muhabbetini eden bir takım insanlara dönüp garip garip bakmamızı sağlayan,<br>sonrada \"evime gideyim biraz oyun bezeyim, bunlara benzemeyeyim dedirten.\" iştah açıcı, sivilce yapıcı,anti-sosyalite muamması.",
+ *     "favCount": 4,
+ *     "isPinned": false,
+ *     "isPinnedOnProfile": false,
+ *     "inEksiSeyler": false,
+ *     "commentCount": 0,
+ *     "aboutAuthor": {
+ *       "author": "otisabi",
+ *       "authorProfilePicture": "https://ekstat.com/img/default-profile-picture-light.svg"
+ *     },
+ *     "aboutDateTime": {
+ *       "createdAtDate": "05.03.1999",
+ *       "createdAtTime": null,
+ *       "updatedAtDate": null,
+ *       "updatedAtTime": null
+ *     }
+ *   },
+ *   {
+ *     "id": 172152,
+ *     "title": "c",
+ *     "body": "alfabenin 3. harfi.",
+ *     "favCount": 3,
+ *     "isPinned": false,
+ *     "isPinnedOnProfile": false,
+ *     "inEksiSeyler": false,
+ *     "commentCount": 0,
+ *     "aboutAuthor": {
+ *       "author": "body",
+ *       "authorProfilePicture": "https://ekstat.com/img/default-profile-picture-light.svg"
+ *     },
+ *     "aboutDateTime": {
+ *       "createdAtDate": "26.05.2000",
+ *       "createdAtTime": "01:06",
+ *       "updatedAtDate": null,
+ *       "updatedAtTime": null
+ *     }
+ *   },
+ * ...
+ *  ]
+ * }
+ * 
+ * @apiError RequestFailedWithStatusCode404 Baslik bulunamadi.
+ * 
+ * @apiErrorExample {json} api/baslik/cdsaas:
+ *  {
+ *    "error": "Request failed with status code 404"
+ *  }
+ * 
+ * 
+ *
+ */
 function topic() { return; }
 
-
-
-
-
-
-
+/**
+ * @api {get} /api/debe/  debe GETir.
+ * @apiName debe
+ * @apiGroup debe
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/debe
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/debe")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/debe").then(...)
+ * 
+ * @apiDescription debeleri getiren endpoint. 
+ * debe'deki tüm entry'lerin bilgileri döner.
+ * 
+ * @apiSuccess (200) {Object} info debe bilgileri
+ * @apiSuccess (200) {String} info.date debe tarihi.
+ * @apiSuccess (200) {Number} info.entryCount debe icindeki entry sayisi.
+ *  
+ * @apiSuccess (200) {Object[]} entries debe icindeki entryler.
+ * @apiSuccess (200) {Number} entries.id entry id'si.
+ * @apiSuccess (200) {String} entries.slug entryin slug'i.
+ * @apiSuccess (200) {String} entries.title entryin basligi.
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "info": {
+ *   "date": "2022-07-15",
+ *   "entryCount": 45
+ * },
+ * "entries": [
+ *   {
+ *     "id": 139983585,
+ *     "slug": "/entry/139983585",
+ *     "title": "fazıl say"
+ *   },
+ *   {
+ *     "id": 139971232,
+ *     "slug": "/entry/139971232",
+ *     "title": "14 temmuz 2022 datça kundakçısının açıklamaları"
+ *   },
+ *  ...
+ *  ]
+ * }
+ */
+function debe() { return; }
 
 
 
@@ -333,101 +529,6 @@ function getUser() {
  *     }
  */
 function getEntry() {
-  let va;
-}
-
-/**
- * @api {get} /api/debe/  debe GETir.
- * @apiName DEBEGet
- * @apiGroup debe
- * @apiVersion 0.0.1
- * @apiDescription debeleri getiren endpoint. 
- * debe'deki tüm entry'leri tek tek çekerek getirdiği için getirmesi zaman alır ama
- * bir şekilde getirir. o debe buraya gelecek.
- * 
- * @apiSuccess {String} date      debe tarihi.
- * @apiSuccess {[Entry]}  array dünün en beğenilen entry objeleri.
- *
- * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
- * [
- *   "date": "2020-12-04",
- *  {
- *    "title": "pena",
- *    "body": "gitar calmak icin kullanilan minik plastik garip nesne.",
- *    "author": "ssg",
- *    "fav_count": "12021",
- *    "created_at": "15.02.1999",
- *    "updated_at": null
- *  },
- *  { ... },
- * ...
- * ]
- * 
- */
-function debe() {
-  let va;
-}
-
-
-/**
- * @api {get} /baslik/:slug tekil başlık GETir.
- * @apiName GetBaslik
- * @apiGroup başlık
- * @apiVersion 0.0.1
- * @apiDescription Spesifik başlığı entry'leri ile birlikte getiren endpoint. Gönül 
- * isterdi ki basliklari id'si sayesinde getirebilelim ama hayat işte, ey ssg duy sesimizi. endpoint
- * sonlarındaki querystringler aynı ekşideki gibi çalışır. örneğin şükela modu için endpointin sonuna 
- * şunu ekleyebilirsiniz: ?a=nice
- * 
- * not: slug yerine basliğin kendisini birebir yazarsaniz da calisir: örneğin:
- * 
- * http://localhost:3000/api/baslik/veda ederken 2020'ye bir not bırak
- * 
- * /baslik/pena--31782
- *
- * @apiParam {String} slug  baslik slug'ı. pena--31782 gibi
- * 
- * @apiSuccess {Number} id başlik id'si.
- * @apiSuccess {String} title başlığın kendisi.
- * @apiSuccess {String} slug başlığın slug'ı.
- * @apiSuccess {Number} total_page başlığın sahip olduğu sayfa sayısı.
- * @apiSuccess {String} current_page bulunulan sayfa numarası.
- * @apiSuccess {Array} tags başlığın kanalları.
- * @apiSuccess {Array} entries başlığın entry'leri.
- *
- * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
-{
-  "id": "31782",
-  "title": "pena",
-  "slug": "pena--31782",
-  "total_page": 89,
-  "current_page": 1,
-  "tags": [
-    "ekşi-sözlük",
-    "müzik"
-  ],
-  "entries": [
-    {
-      "id": "1",
-      "body": "gitar calmak icin kullanilan minik plastik garip nesne.",
-      "author": "ssg",
-      "created_at": "15.02.1999",
-      "updated_at": null
-    },
-    {
-      "id": "69759",
-      "body": "en iyi pena ayak başparmaklarınızdan elde edeceğiniz tırnaklardan... hassas penadır.",
-      "author": "otisabi",
-      "created_at": "13.12.1999 02:23",
-      "updated_at": null
-    },
-    ...
-  ]
-}
- */
-function detail() {
   let va;
 }
 
