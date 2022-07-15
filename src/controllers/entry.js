@@ -25,6 +25,7 @@ module.exports = async (id) => {
         return { error: errors.ENTRY.NOT_FOUND };
     }
 
+    id = parseInt(id);
     const title = $("#title").attr("data-title");
     const body = element.find(".content").html().trim();
     const author = element.attr("data-author");
