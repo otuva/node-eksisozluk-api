@@ -21,6 +21,7 @@ const user = {
 }
 
 const topic = {
+  allowRedirect: true,
   // for easier configuration
   enabledChannels: [
     "haber",
