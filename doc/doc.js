@@ -65,12 +65,12 @@
  * 
  * @apiErrorExample {json} api/basliklar/gundem/412:
  *  {
- *  "error": "TopicNotFound"
+ *  "error": "Topic not found"
  *  }
  * 
  * @apiErrorExample {json} api/basliklar/gundam:
  *  {
- *  "error": "TopicIsInvalid"
+ *  "error": "Topic is invalid"
  *  }
  * 
  *
@@ -144,12 +144,12 @@ function topicList() { return; }
  * 
  * @apiErrorExample {json} api/basliklar/kanal/bilim/17:
  *  {
- *  "error": "TopicNotFound"
+ *  "error": "Topic not found"
  *  }
  * 
  * @apiErrorExample {json} api/basliklar/kanal/asd:
  *  {
- *  "error": "TopicIsInvalid"
+ *  "error": "Topic is invalid"
  *  }
  * 
  *
@@ -157,7 +157,7 @@ function topicList() { return; }
 function topicList() { return; }
 
 /**
- * @api {get} /baslik/:slug/:page? tekil başlık GETir.
+ * @api {get} /baslik/:slug/:page? tek başlık GETir.
  * @apiName topic
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -220,10 +220,6 @@ function topicList() { return; }
  * @apiSuccess (200) {String} entries.aboutDateTime.createdAtTime entryin olusturulma saati.
  * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
  * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
- * 
- * 
- * 
- * 
  * 
  *
  * @apiSuccessExample Success-Response:
@@ -355,7 +351,84 @@ function topic() { return; }
  */
 function debe() { return; }
 
-
+/**
+ * @api {get} /api/entry/:id tek entry GETir.
+ * @apiName entry
+ * @apiGroup entry
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/entry/139983585
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/entry/139983585")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/entry/139983585").then(...)
+ * 
+ * @apiDescription entry no'su ile entry getiren endpoint.
+ * 
+ * @apiParam {Number} id entry no'su.
+ *
+ * @apiSuccess (200) {Number} id entry id'si.
+ * @apiSuccess (200) {String} title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} body entryin icerigi
+ * @apiSuccess (200) {Number} favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * 
+ * @apiSuccess (200) {Object} aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * 
+ * @apiSuccess (200) {Object} aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} aboutDateTime.updatedAtTime entryin guncellenme saati.
+ * 
+ * 
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ * "id": 139730148,
+ * "title": "simcity",
+ * "body": "yine internetin karanlık dehlizlerinde gezerken ...",
+ * "favCount": 11,
+ * "isPinned": false,
+ * "isPinnedOnProfile": false,
+ * "inEksiSeyler": true,
+ * "commentCount": 0,
+ * "aboutAuthor": {
+ *   "author": "jottar",
+ *   "authorProfilePicture": "https://img.ekstat.com/profiles/jottar-637919601690625181.jpg"
+ * },
+ * "aboutDateTime": {
+ *   "createdAtDate": "08.07.2022",
+ *   "createdAtTime": "11:37",
+ *   "updatedAtDate": "16:45",
+ *   "updatedAtTime": null
+ *  }
+ * }
+ * 
+ * @apiError RequestFailedWithStatusCode404 Entry bulunamadi.
+ * @apiError EntryNotFound Entry getirirken eksi sozluk patlarsa (büyük başarısızlıklar sözkonusu)
+ * 
+ * @apiErrorExample {json} api/entry/4216654:
+ *  {
+ *    "error": "Request failed with status code 404"
+ *  }
+ * 
+ * @apiErrorExample {json} api/entry/42424242424:
+ * 
+ * {
+ *    "error": "Entry not found"
+ * }
+ *
+ */
+function entry() { return; }
 
 
 
@@ -456,7 +529,7 @@ function getSearch() {
 }
 
 /**
- * @api {get} /api/biri/:nick tekil kullanıcı GETir.
+ * @api {get} /api/biri/:nick tek kullanıcı GETir.
  * @apiName GetUser
  * @apiGroup user
  * @apiDescription nick ile kullanıcı bilgisi getiren endpoint.
@@ -491,44 +564,5 @@ function getUser() {
   let va;
 }
 
-/**
- * @api {get} /api/entry/:id tekil entry GETir.
- * @apiName GetEntry
- * @apiGroup entry
- * @apiDescription entry no'su ile entry getiren endpoint.
- * @apiVersion 0.0.1
- *
- * @apiParam {Number} id            entry no'su.
- *
- * @apiSuccess {Number} id          entry id'si.
- * @apiSuccess {String} title       entry başlığı.
- * @apiSuccess {String} body        entry içeriği.
- * @apiSuccess {String} author      entry yazarı.
- * @apiSuccess {Number} fav_count   entry favori sayısı.
- * @apiSuccess {String} created_at  entry oluşturulma tarihi.
- * @apiSuccess {String} updated_at  entry editlenme tarihi (varsa).
- *
- * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
- * {
- *  "id": 1,
- *  "title": "pena",
- *  "body": "gitar calmak icin kullanilan minik plastik garip nesne.",
- *  "author": "ssg",
- *  "fav_count": "12021",
- *  "created_at": "15.02.1999",
- *  "updated_at": null
- * }
- *
- * @apiError EntryNotFound Entry bulunamadı hatası.
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- *     {
- *       "error": "Request failed with status code 404"
- *     }
- */
-function getEntry() {
-  let va;
-}
+
 
