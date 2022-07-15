@@ -28,7 +28,12 @@ router.get('/basliklar/:choice/:page?', async (req, res, next) => {
 /* GET single thread */
 router.get('/baslik/:slug/:page?', async (req, res, next) => {
   response = await topic(req.params.slug, req.params.page);
-  res.json(response);
+  if (response.redirect) {
+    res.redirect(response.redirect);
+  }
+  else {
+    res.json(response);
+  }
 });
 
 /* GET single entry */

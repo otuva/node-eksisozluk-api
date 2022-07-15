@@ -1,15 +1,29 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const urls = require('../constant/urls');
-const errors = require('../constant/errors');
+// const errors = require('../constant/errors');
+const config = require('../config');
+const info = require('../constant/info');
 const parseEntryDateTime = require('../utils/entry/parseEntryDateTime');
 
-module.exports = async (slug, page=1) => {
+module.exports = async (slug, page = 1) => {
     let response;
     try {
-        response = await axios.get(`${urls.BASE}/${slug}?p=${page}`);
+        response = await axios.get(`${urls.BASE}/${encodeURIComponent(slug)}?p=${page}`);
     } catch (err) {
         return { error: err.message };
+    }
+
+    if (response.request.path !== `/${slug}?p=${page}`) {
+        if (config.topic.allowRedirect) {
+            console.info(info.TOPIC.REDIRECTING);
+            console.info(`/api/baslik/${slug}/${page} --> /api/baslik${response.request.path}/${page}`);
+            return { redirect: `/api/baslik${response.request.path}/${page}` };
+        }
+        else {
+            console.info(info.TOPIC.REDIRECTING_DISABLED);
+            console.info(`/api/baslik/${slug}/${page} --> /api/baslik${response.request.path}/${page}`);
+        }
     }
 
     const $ = cheerio.load(response.data, { decodeEntities: false });
@@ -25,7 +39,7 @@ module.exports = async (slug, page=1) => {
     const disambiguations = [];
     $("#disambiguations").find("ul > li").each((index, element) => {
         disambiguations.push({
-            link: $(element).find("a").attr("href"),
+            slug: $(element).find("a").attr("href"),
             title: $(element).text()
         });
     });
