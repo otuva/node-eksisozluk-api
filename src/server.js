@@ -34,5 +34,5 @@ app.listen(port, () => {
     console.log(chalk.green(`API Endpoint:\t\t${config.api.endpoint}`));
     console.log(chalk.green("\ndatabase connection is established"));
     console.log(chalk.yellow('..................................'));
-    console.log(chalk.blue(`eksisozluk-api running on http://localhost:${port}\n\n`));
+    console.log(chalk.blue(`eksisozluk-api running on http://localhost:${port}\n`));
 });
