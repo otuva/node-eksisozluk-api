@@ -1,16 +1,16 @@
 const ERRORS = {
     ENTRY: {
-        NOT_FOUND: "EntryNotFound",
+        NOT_FOUND: "Entry not found",
     },
     PAGE: {
-        NOT_FOUND: "PageNotFound",
+        NOT_FOUND: "Page not found",
     },
     SEARCH: {
-        NOT_FOUND: "SearchReturnedNoResults",
+        NOT_FOUND: "Search returned no results",
     },
     TOPIC: {
-        NOT_FOUND: "TopicNotFound",
-        INVALID: "TopicIsInvalid",
+        NOT_FOUND: "Topic not found",
+        INVALID: "Topic is invalid",
     }
 }
 
