@@ -470,46 +470,46 @@ function entry() { return; }
  * @apiSuccess (200) {String} authorProfilePicture kullanicinin profil resmi.
  * 
  * @apiSuccess (200) {Object} lastEntries kullanicinin son entryleri.
- * @apiSuccess (200) {Object} pinnedEntry kullanicinin profiline sabitlenmis entry
- * @apiSuccess (200) {Number} pinnedEntry.id entry id'si.
- * @apiSuccess (200) {String} pinnedEntry.title entrynin ait oldugu baslik
- * @apiSuccess (200) {String} pinnedEntry.body entryin icerigi
- * @apiSuccess (200) {Number} pinnedEntry.favCount entryin favori sayisi
- * @apiSuccess (200) {Boolean} pinnedEntry.isPinned entryin pinli olup olmadigi.
- * @apiSuccess (200) {Boolean} pinnedEntry.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
- * @apiSuccess (200) {Boolean} pinnedEntry.inEksiSeyler entryin eksiseyler'de olup olmadigi.
- * @apiSuccess (200) {Number} pinnedEntry.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * @apiSuccess (200) {Object} lastEntries.pinnedEntry kullanicinin profiline sabitlenmis entry
+ * @apiSuccess (200) {Number} lastEntries.pinnedEntry.id entry id'si.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.body entryin icerigi
+ * @apiSuccess (200) {Number} lastEntries.pinnedEntry.favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} lastEntries.pinnedEntry.isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} lastEntries.pinnedEntry.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} lastEntries.pinnedEntry.inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} lastEntries.pinnedEntry.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
  * 
- * @apiSuccess (200) {Object} pinnedEntry.aboutAuthor entryin yazar bilgileri.
- * @apiSuccess (200) {String} pinnedEntry.aboutAuthor.author yazarin nicki.
- * @apiSuccess (200) {String} pinnedEntry.aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * @apiSuccess (200) {Object} lastEntries.pinnedEntry.aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.aboutAuthor.authorProfilePicture yazarin profil resmi.
  * 
- * @apiSuccess (200) {Object} pinnedEntry.aboutDateTime entryin tarih bilgileri.
- * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.createdAtDate entryin olusturulma tarihi.
- * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.createdAtTime entryin olusturulma saati.
- * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
- * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.updatedAtTime entryin guncellenme saati.
+ * @apiSuccess (200) {Object} lastEntries.pinnedEntry.aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} lastEntries.pinnedEntry.aboutDateTime.updatedAtTime entryin guncellenme saati.
  * 
  * 
- * @apiSuccess (200) {Object[]} entries kullanicinin entryleri.
- * @apiSuccess (200) {Number} entries.id entry id'si.
- * @apiSuccess (200) {String} entries.title entrynin ait oldugu baslik
- * @apiSuccess (200) {String} entries.body entryin icerigi
- * @apiSuccess (200) {Number} entries.favCount entryin favori sayisi
- * @apiSuccess (200) {Boolean} entries.isPinned entryin pinli olup olmadigi.
- * @apiSuccess (200) {Boolean} entries.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
- * @apiSuccess (200) {Boolean} entries.inEksiSeyler entryin eksiseyler'de olup olmadigi.
- * @apiSuccess (200) {Number} entries.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * @apiSuccess (200) {Object[]} lastEntries.entries kullanicinin entryleri.
+ * @apiSuccess (200) {Number} lastEntries.entries.id entry id'si.
+ * @apiSuccess (200) {String} lastEntries.entries.title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} lastEntries.entries.body entryin icerigi
+ * @apiSuccess (200) {Number} lastEntries.entries.favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} lastEntries.entries.isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} lastEntries.entries.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} lastEntries.entries.inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} lastEntries.entries.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
  * 
- * @apiSuccess (200) {Object} entries.aboutAuthor entryin yazar bilgileri.
- * @apiSuccess (200) {String} entries.aboutAuthor.author yazarin nicki.
- * @apiSuccess (200) {String} entries.aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * @apiSuccess (200) {Object} lastEntries.entries.aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} lastEntries.entries.aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} lastEntries.entries.aboutAuthor.authorProfilePicture yazarin profil resmi.
  * 
- * @apiSuccess (200) {Object} entries.aboutDateTime entryin tarih bilgileri.
- * @apiSuccess (200) {String} entries.aboutDateTime.createdAtDate entryin olusturulma tarihi.
- * @apiSuccess (200) {String} entries.aboutDateTime.createdAtTime entryin olusturulma saati.
- * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
- * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
+ * @apiSuccess (200) {Object} lastEntries.entries.aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} lastEntries.entries.aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} lastEntries.entries.aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} lastEntries.entries.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} lastEntries.entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
  *
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
