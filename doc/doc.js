@@ -1,5 +1,5 @@
 /**
- * @api {get} /api/basliklar/:choice/:page? başlıkları GETir.
+ * @api {get} /api/basliklar/:choice/:page? başlıkları getir.
  * @apiName topicList
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -78,7 +78,7 @@
 function topicList() { return; }
 
 /**
- * @api {get} /api//basliklar/kanal/:choice/:page? kanallari GETir.
+ * @api {get} /api/basliklar/kanal/:choice/:page? kanallari getir.
  * @apiName topicListChannel
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -157,7 +157,7 @@ function topicList() { return; }
 function topicList() { return; }
 
 /**
- * @api {get} /api//baslik/:slug/:page? tek başlık GETir.
+ * @api {get} /api/baslik/:slug/:page? tek başlık getir.
  * @apiName topic
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -302,7 +302,7 @@ function topicList() { return; }
 function topic() { return; }
 
 /**
- * @api {get} /api/debe/  debe GETir.
+ * @api {get} /api/debe/  debe getir.
  * @apiName debe
  * @apiGroup debe
  * @apiVersion 0.0.1
@@ -352,7 +352,7 @@ function topic() { return; }
 function debe() { return; }
 
 /**
- * @api {get} /api/entry/:id tek entry GETir.
+ * @api {get} /api/entry/:id tek entry getir.
  * @apiName entry
  * @apiGroup entry
  * @apiVersion 0.0.1
@@ -431,9 +431,9 @@ function debe() { return; }
 function entry() { return; }
 
 /**
- * @api {get} /api/biri/:nick tek kullanıcı GETir.
+ * @api {get} /api/biri/:nick tek kullanıcı getir.
  * @apiName user
- * @apiGroup user
+ * @apiGroup kullanici
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
@@ -579,7 +579,7 @@ function user() { return; }
 /**
  * @api {get} /api/son-entryleri/:nick/:page? entry sayfasini getir.
  * @apiName page
- * @apiGroup user
+ * @apiGroup kullanici
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
@@ -670,7 +670,7 @@ function page() { return; }
 /**
  * @api {get} /api/ara/:query arama sonucunu getir.
  * @apiName search
- * @apiGroup search
+ * @apiGroup arama
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
@@ -742,7 +742,7 @@ function search() { return; }
 /**
  * @api {get} /api/autocomplete/:query otomatik tamamlamayi getir.
  * @apiName autoComplete
- * @apiGroup search
+ * @apiGroup arama
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
@@ -789,3 +789,47 @@ function search() { return; }
  *
  */
 function autoComplete() { return; }
+
+/**
+ * @api {get} /api/kanallar tum kanallari getir.
+ * @apiName allChannels
+ * @apiGroup etc
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/kanallar
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/kanallar")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/kanallar").then(...)
+ * 
+ * @apiDescription Tum kanallari getiren endpoint. 
+ * 
+ * `¯\_(ツ)_/¯`
+ * 
+ * @apiSuccess (200) {Object[]} channels
+ * @apiSuccess (200) {String} channels.name kanalin ismi.
+ * @apiSuccess (200) {String} channels.slug kanalin url slug hali.
+ * @apiSuccess (200) {String} channels.description kanalin açiklamasi.
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+  "channels": [
+    {
+      "name": "#haber",
+      "slug": "/basliklar/kanal/haber",
+      "description": "yurtta ve dünyada olan biten"
+    },
+    {
+      "name": "#sinema",
+      "slug": "/basliklar/kanal/sinema",
+      "description": "filmler, yönetmenler, teknikler, yarıda salonu terk etmeler"
+    },
+    ...
+  ]
+}
+ * 
+ */
+function allChannels() { return; }
