@@ -1,5 +1,5 @@
 /**
- * @api {get} /basliklar/:choice/:page? başlıkları GETir.
+ * @api {get} /api/basliklar/:choice/:page? başlıkları GETir.
  * @apiName topicList
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -78,7 +78,7 @@
 function topicList() { return; }
 
 /**
- * @api {get} /basliklar/kanal/:choice/:page? kanallari GETir.
+ * @api {get} /api//basliklar/kanal/:choice/:page? kanallari GETir.
  * @apiName topicListChannel
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -157,7 +157,7 @@ function topicList() { return; }
 function topicList() { return; }
 
 /**
- * @api {get} /baslik/:slug/:page? tek başlık GETir.
+ * @api {get} /api//baslik/:slug/:page? tek başlık GETir.
  * @apiName topic
  * @apiGroup başlık
  * @apiVersion 0.0.1
@@ -446,7 +446,10 @@ function entry() { return; }
  * 
  * @apiDescription nick ile kullanıcı bilgisi getiren endpoint.
  * 
- * <Buraya son entryleri de yaz>
+ * Bu endpoint kullanicinin son entrylerini gostermek icin otomatik olarak page endpoini de cagirir.
+ * 
+ * Devre disi birakmak icin `config.user.autoRetrieveLastEntries` `false` yapilabilir.
+ * Eger yapilirsa `lastEntries` kismi dondurulmez.
  * 
  * @apiParam {String} nick kullanici nicki
  *
@@ -573,7 +576,96 @@ function entry() { return; }
  */
 function user() { return; }
 
-
+/**
+ * @api {get} /api/son-entryleri/:nick/:page? entry sayfasini getir.
+ * @apiName page
+ * @apiGroup user
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/son-entryleri/ssg
+ * @apiExample {curl} Example curl sayfa:
+ *     curl -i http://localhost:3000/api/son-entryleri/ssg/2
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/son-entryleri/ssg")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/son-entryleri/ssg").then(...)
+ * 
+ * @apiDescription kullanicinin girdigi entry sayfalarini getiren endpoint.
+ * 
+ * eger sayfa parametresi verilmezse ilk sayfayi dondurur.
+ * 
+ * eger ilk sayfa ise ve kullanicinin sabitledigi bir entry varsa `entries` arrayindan once `pinnedEntry` objesi dondurur.
+ * formatin degistigi tek durum budur. 
+ * 
+ * diger sayfalarda ise veya sabitlenen entry yoksa sadece `entries` arrayi dondurur. 
+ * null degeriyle bile olsa `pinnedEntry` diye bir bolum direkt yer almaz.
+ * 
+ * @apiParam {String} nick kullanici nicki
+ * @apiParam {Number} [page=1] getirilecek sayfa
+ *
+ * @apiSuccess (200) {Object} pinnedEntry `NOT:` sadece ilk sayfada return edilen standart entry objesi. Objenin yapisi alttaki entry objesi ile ayni.
+ * 
+ * @apiSuccess (200) {Object[]} entries entryleri barindiran array
+ * @apiSuccess (200) {Number} entries.id entry id'si.
+ * @apiSuccess (200) {String} entries.title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} entries.body entryin icerigi
+ * @apiSuccess (200) {Number} entries.favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} entries.isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} entries.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} entries.inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} entries.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * 
+ * @apiSuccess (200) {Object} entries.aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} entries.aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} entries.aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * 
+ * @apiSuccess (200) {Object} entries.aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} entries.aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} entries.aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
+ * 
+ * 
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+  "entries": [
+    {
+      "id": 139962328,
+      "title": "yazarların favori ressam ve eseri",
+      "body": "<a class=\"b\" href=\"/?q=albert+bierstadt\">albert bierstadt</a>'ın \"<a rel=\"nofollow noopener\" class=\"url\" target=\"_blank\" href=\"https://twitter.com/esesci/status/927741151469117441?s=20&amp;t=GHkkCtUJz8GNqzwbjNfMLA\" title=\"https://twitter.com/esesci/status/927741151469117441?s=20&amp;t=GHkkCtUJz8GNqzwbjNfMLA\">puget sound on the pacific coast</a>\" eseri çok sevdiklerimden biridir.",
+      "favCount": 12,
+      "isPinned": false,
+      "isPinnedOnProfile": false,
+      "inEksiSeyler": false,
+      "commentCount": 0,
+      "aboutAuthor": {
+        "author": "ssg",
+        "authorProfilePicture": "https://img.ekstat.com/profiles/ssg-637802096150637091.jpg"
+      },
+      "aboutDateTime": {
+        "createdAtDate": "14.07.2022",
+        "createdAtTime": "10:38",
+        "updatedAtDate": null,
+        "updatedAtTime": null
+      }
+    },
+    ...
+  ]
+}
+ * 
+ * @apiError PageNotFound sayfa bulunamadi.
+ * 
+ * @apiErrorExample {json} api/son-entryleri/ssg/54356:
+ *  {
+ *    "error": "Page not found"
+ *  }
+ * 
+ */
+ function page() { return; }
 
 
 
