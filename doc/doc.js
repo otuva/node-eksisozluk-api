@@ -808,7 +808,7 @@ function autoComplete() { return; }
  * 
  * `¯\_(ツ)_/¯`
  * 
- * @apiSuccess (200) {Object[]} channels
+ * @apiSuccess (200) {Object[]} channels kanallarin arrayi.
  * @apiSuccess (200) {String} channels.name kanalin ismi.
  * @apiSuccess (200) {String} channels.slug kanalin url slug hali.
  * @apiSuccess (200) {String} channels.description kanalin açiklamasi.
