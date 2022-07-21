@@ -50,7 +50,8 @@ module.exports = async (nick) => {
         });
     });
 
-    const lastEntries = await page(nick, 1);
+    let lastEntries;
+    if (config.user.autoRetrieveLastEntries) lastEntries = await page(nick, 1);
 
     return {
         nick,
