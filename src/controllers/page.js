@@ -6,10 +6,11 @@ const config = require('../config');
 const parseEntryDateTime = require('../utils/entry/parseEntryDateTime');
 
 module.exports = async (nick, page=1) => {
+    page = parseInt(page)
     let response;
     try {
         // https://eksisozluk.com/son-entryleri?nick=ssg&p=1
-        response = await axios.get(`${urls.ENTRY_PAGE}${nick}&p=${parseInt(page)}`, {
+        response = await axios.get(`${urls.ENTRY_PAGE}${nick}&p=${page}`, {
             "headers": config.asyncRequestHeaders
         });
     } catch (err) {
