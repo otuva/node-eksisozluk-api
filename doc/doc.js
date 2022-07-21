@@ -665,43 +665,113 @@ function user() { return; }
  *  }
  * 
  */
- function page() { return; }
-
-
-
-
-
-
-
-
-
-
-
-
-
+function page() { return; }
 
 /**
- * @api {get} /api/autocomplete/:query autoComplete.
- * @apiName autoComplete
+ * @api {get} /api/ara/:query arama sonucunu getir.
+ * @apiName search
  * @apiGroup search
- * @apiDescription Otomatik tamamlama sağlayan endpoint.
  * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/ara/2022
+ * @apiExample {curl} Example curl sayfa:
+ *     curl -i http://localhost:3000/api/ara/2022/2
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/ara/2022")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/ara/2022").then(...)
+ * 
+ * @apiDescription site içi arama yapan endpoint.
+ * 
+ * boslukla ayrilmis birden cok kelime veya tek aranabilir
+ * 
+ * - `api/ara/mayonez`
+ * 
+ * - `api/ara/ketcap mayonez`
+ * 
+ * gibi.
+ * 
+ * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
+ * 
+ * @apiParam {String} query arama kelimesi/kelimeleri
  *
- * @apiParam {String} nick          kullanıcı nick'i
- *
+ * @apiSuccess (200) {Number} totalTopicCount toplam baslik adeti.
+ * @apiSuccess (200) {Number} totalPageCount toplam kac sayfa baslik oldugu.
+ * @apiSuccess (200) {Object[]} topics başlık objelerinin arrayi.
+ * @apiSuccess (200) {Number} topics.id basligin id'si
+ * @apiSuccess (200) {String} topics.title basligin ismi
+ * @apiSuccess (200) {String} topics.topicSlug baslik url slug hali
+ * @apiSuccess (200) {String} topics.topicUrl basligin full urli
+ * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
-{
+ * {
+  "totalTopicCount": 52,
+  "totalPageCount": 2,
+  "topics": [
+    {
+      "id": 6398332,
+      "title": "ketçap mayonez hardal üçlüsündeki hardalın durumu",
+      "slug": "/ketcap-mayonez-hardal-uclusundeki-hardalin-durumu--6398332",
+      "topicUrl": "https://eksisozluk.com/ketcap-mayonez-hardal-uclusundeki-hardalin-durumu--6398332",
+      "totalEntryCount": 180
+    },
+    {
+      "id": 7110782,
+      "title": "en iyi ketçap mayonez markası",
+      "slug": "/en-iyi-ketcap-mayonez-markasi--7110782",
+      "topicUrl": "https://eksisozluk.com/en-iyi-ketcap-mayonez-markasi--7110782",
+      "totalEntryCount": 165
+    },
+    ...
+  ]
+}
+ * 
+ * @apiError SearchReturnedNoResults Arama sonucu bos dondu.
+ * 
+ * @apiErrorExample {json} api/ara/dsadsaads:
+ *  {"error":"Search returned no results"}
+ * 
+ *
+ */
+function search() { return; }
+
+/**
+ * @api {get} /api/autocomplete/:query otomatik tamamlamayi getir.
+ * @apiName autoComplete
+ * @apiGroup search
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/autocomplete/pena
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/autocomplete/pena")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/autocomplete/pena").then(...)
+ * 
+ * @apiDescription Otomatik tamamlama sağlayan endpoint.
+ * 
+ * Return edilen cevaptaki arraylerin ikisi de bos ise hata dondurur degilse eksi sozlukten alinan cevabi direkt olarak dondurur.
+ * 
+ * @apiParam {String} query aranan kelime/kelimeler
+ *
+ * @apiSuccess (200) {String[]} Titles baslik isimlerinin arrayi.
+ * @apiSuccess (200) {String} Query aranan kelime/ler
+ * @apiSuccess (200) {String[]} Nicks kullanici nicklerinin arrayi.
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
   "Titles": [
     "pena",
     "pena (video kanalı)",
     "pena'daki aldatan sevgili entry canlandırması",
-    "pena olmayınca kullanılanlar",
-    "ekşi sözlük logosundaki pena",
-    "pena ile bas gitar çalmak",
-    "trista pena",
-    "20 ağustos 2018 pena butonunun gelmesi"
+    "inaki pena",
+    ...
   ],
   "Query": "pena",
   "Nicks": [
@@ -710,57 +780,12 @@ function user() { return; }
     "pena minik plastik garip nesne"
   ]
 }
-*/
-function autoComplete() {
-  let va;
-}
-
-
-/**  Düzelt
- * @api {get} /api/ara/:query aram sonucunu GETir.
- * @apiName GetSearch
- * @apiGroup search
- * @apiDescription site içi arama yapan endpoint.
- * @apiVersion 0.0.1
+ * 
+ * @apiError SearchReturnedNoResults Arama sonucu bos dondu.
+ * 
+ * @apiErrorExample {json} api/autocomplete/asd fdsaafsd:
+ *  {"error":"Search returned no results"}
+ * 
  *
- * @apiParam {String} query         arama kelimesi
- *
- * @apiSuccess {String} thread_count        başlık sayısı
- * @apiSuccess {Array}  threads             başlık array'i.
- *
- * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
-{
-  "thread_count": "230 başlık",
-  "threads": [
-    {
-      "id": 6254224,
-      "title": "veda ederken 2020'ye bir not bırak",
-      "slug": "https://eksisozluk.com/veda-ederken-2020ye-bir-not-birak--6254224?a=popular",
-      "entry_count_total": "182"
-    },
-    {
-      "id": 6303813,
-      "title": "9 kere leyla",
-      "slug": "https://eksisozluk.com/9-kere-leyla--6303813?a=popular",
-      "entry_count_total": "535"
-    },
-    {
-      "id": 6754548,
-      "title": "5 aralık 2020 çin'in ay'a bayrak dikmesi",
-      "slug": "https://eksisozluk.com/5-aralik-2020-cinin-aya-bayrak-dikmesi--6754548?a=popular",
-      "entry_count_total": "28"
-    },
- *
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- * {"error":"Request failed with status code 404"}
  */
-function getSearch() {
-  let va;
-}
-
-
-
-
+function autoComplete() { return; }
