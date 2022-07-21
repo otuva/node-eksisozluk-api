@@ -63,7 +63,7 @@ module.exports = async (choice, page = 1, channels = false) => {
             const totalEntryCount =
                 parseInt(currentElement.find("small").text()) || 1;
             const topicSlug = currentElement.attr("href");
-            const topicUrl = `${urls.BASE}/${topicSlug}`;
+            const topicUrl = `${urls.BASE}${topicSlug}`;
             const id = parseID(topicSlug);
 
             topics.push({
