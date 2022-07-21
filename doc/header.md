@@ -4,8 +4,6 @@
 
 ekşisözlük için geliştirilmiş resmi olmayan api.
 
-9 controller içerisinde 10 adet endpoint barındirir
-
 **TLDR sondadir eger dokumantasyonu okumak istemiyorsaniz atlayabilirsiniz.**
 
 **Not:** Dokumantasyondaki port (3000), config dosyasinda kullanilmis default porttur. 
