@@ -430,7 +430,148 @@ function debe() { return; }
  */
 function entry() { return; }
 
-
+/**
+ * @api {get} /api/biri/:nick tek kullanıcı GETir.
+ * @apiName user
+ * @apiGroup user
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/biri/ssg
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/biri/ssg")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/biri/ssg").then(...)
+ * 
+ * @apiDescription nick ile kullanıcı bilgisi getiren endpoint.
+ * 
+ * <Buraya son entryleri de yaz>
+ * 
+ * @apiParam {String} nick kullanici nicki
+ *
+ * @apiSuccess (200) {String} nick kullanicinin nicki.
+ * @apiSuccess (200) {Boolean} isUserCaylak kullanicinin caylak olup olmadigi.
+ * @apiSuccess (200) {Boolean} isUserLanetli kullanicinin lanetli olup olmadigi.
+ * @apiSuccess (200) {Boolean} isUserLeyla kullanicinin ucup ucmadigi.
+ * @apiSuccess (200) {Number} totalEntryCount kullanicinin toplam entry sayisi.
+ * @apiSuccess (200) {Number} totalPageCount kullanicinin toplam entry sayfa sayisi.
+ * @apiSuccess (200) {Number} userFollowingCount kullanicinin takip edilen kullanici sayisi.
+ * @apiSuccess (200) {Number} userFollowerCount kullaniciyi takip eden kullanici sayisi.
+ * @apiSuccess (200) {String} karmaLevel kullanicinin karma seviyesi.
+ * 
+ * @apiSuccess (200) {Object[]} pinnedBadges kullanicinin sergiledigi rozetler.
+ * @apiSuccess (200) {String} pinnedBadges.title rozetin adi.
+ * @apiSuccess (200) {String} pinnedBadges.imgSrc rozetin resmi.
+ * 
+ * @apiSuccess (200) {String} authorProfilePicture kullanicinin profil resmi.
+ * 
+ * @apiSuccess (200) {Object} lastEntries kullanicinin son entryleri.
+ * @apiSuccess (200) {Object} pinnedEntry kullanicinin profiline sabitlenmis entry
+ * @apiSuccess (200) {Number} pinnedEntry.id entry id'si.
+ * @apiSuccess (200) {String} pinnedEntry.title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} pinnedEntry.body entryin icerigi
+ * @apiSuccess (200) {Number} pinnedEntry.favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} pinnedEntry.isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} pinnedEntry.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} pinnedEntry.inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} pinnedEntry.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * 
+ * @apiSuccess (200) {Object} pinnedEntry.aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} pinnedEntry.aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} pinnedEntry.aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * 
+ * @apiSuccess (200) {Object} pinnedEntry.aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} pinnedEntry.aboutDateTime.updatedAtTime entryin guncellenme saati.
+ * 
+ * 
+ * @apiSuccess (200) {Object[]} entries kullanicinin entryleri.
+ * @apiSuccess (200) {Number} entries.id entry id'si.
+ * @apiSuccess (200) {String} entries.title entrynin ait oldugu baslik
+ * @apiSuccess (200) {String} entries.body entryin icerigi
+ * @apiSuccess (200) {Number} entries.favCount entryin favori sayisi
+ * @apiSuccess (200) {Boolean} entries.isPinned entryin pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} entries.isPinnedOnProfile entryin profilinde pinli olup olmadigi.
+ * @apiSuccess (200) {Boolean} entries.inEksiSeyler entryin eksiseyler'de olup olmadigi.
+ * @apiSuccess (200) {Number} entries.commentCount entryin yorum sayisi. (sorularinizi yanitliyorum'da vs. bulunan)
+ * 
+ * @apiSuccess (200) {Object} entries.aboutAuthor entryin yazar bilgileri.
+ * @apiSuccess (200) {String} entries.aboutAuthor.author yazarin nicki.
+ * @apiSuccess (200) {String} entries.aboutAuthor.authorProfilePicture yazarin profil resmi.
+ * 
+ * @apiSuccess (200) {Object} entries.aboutDateTime entryin tarih bilgileri.
+ * @apiSuccess (200) {String} entries.aboutDateTime.createdAtDate entryin olusturulma tarihi.
+ * @apiSuccess (200) {String} entries.aboutDateTime.createdAtTime entryin olusturulma saati.
+ * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtDate entryin guncellenme tarihi.
+ * @apiSuccess (200) {String} entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+  "nick": "ssg",
+  "isUserCaylak": false,
+  "isUserLanetli": false,
+  "isUserLeyla": false,
+  "totalEntryCount": 51118,
+  "totalPageCount": 5112,
+  "userFollowingCount": 452,
+  "userFollowerCount": 15122,
+  "karmaLevel": "mangal yürekli rişar (500)",
+  "pinnedBadges": [
+    {
+      "title": "gece kuşu: çoğunlukla gece entry girenler",
+      "imgSrc": "https://cdn.eksisozluk.com/badges/gece-kusu.png"
+    },
+    ...
+  ],
+  "authorProfilePicture": "https://img.ekstat.com/profiles/ssg-637802096150637091.jpg",
+  "lastEntries": {
+    "pinnedEntry": {
+      "id": 112047179,
+      "title": "street coder",
+      "body": "başlangıç ve orta seviye programcılar için hem var olan yerleşik kural ve prensipleri sorgulayan hem de bazılarını neden kullanmamız gerektiği konusunda sorgular ve tavsiyeler içeren <a rel=\"nofollow noopener\" class=\"url\" target=\"_blank\" href=\"https://www.manning.com/books/street-coder?utm_source=sedatk&amp;utm_medium=affiliate&amp;utm_campaign=book_kapanoglu_street_10_6_20&amp;a_aid=sedatk&amp;a_bid=72b5d1be\" title=\"https://www.manning.com/books/street-coder?utm_source=sedatk&amp;utm_medium=affiliate&amp;utm_campaign=book_kapanoglu_street_10_6_20&amp;a_aid=sedatk&amp;a_bid=72b5d1be\">kitabım</a>. kitabın amacı farklı yollardan kendine temel bir programlama bilgisi edinmiş geliştiricilere \"sokaklarda\" başlarına neler gelebileceği ve önemsemedikleri bazı konuların kendilerine bu sokak macerasında nasıl yardımcı olacağı konusunda bir perspektif açmak. <a class=\"b\" href=\"/?q=manning+publications\">manning publications</a>'ın <a class=\"b\" href=\"/?q=meap\">meap</a> erken erişim programıyla çıktı. gelen geri bildirimler doğrultusunda hem şekillenecek hem de kitabın gelişimini canlı takip etme imkanı olacak.<br><br><a rel=\"nofollow noopener\" class=\"url\" target=\"_blank\" href=\"https://streetcoder.org/\">https://streetcoder.org/</a>",
+      "favCount": 221,
+      "isPinned": false,
+      "isPinnedOnProfile": true,
+      "inEksiSeyler": false,
+      "commentCount": 0,
+      "aboutAuthor": {
+        "author": "ssg",
+        "authorProfilePicture": "https://img.ekstat.com/profiles/ssg-637802096150637091.jpg"
+      },
+      "aboutDateTime": {
+        "createdAtDate": "24.08.2020",
+        "createdAtTime": "22:49",
+        "updatedAtDate": "01.09.2021",
+        "updatedAtTime": "22:35"
+      }
+    },
+    "entries": [
+      {
+        "id": 140215313,
+        "title": "yazarların cips tercihleri",
+        "body": "(bkz: <a class=\"b\" href=\"/entry/34124398\">kılıçoğlu sineması/#34124398</a>)",
+        ...
+        }
+      },
+      ...
+    ]
+  }
+}
+ * 
+ * @apiError RequestFailedWithStatusCode404 kullanici bulunamadi.
+ * 
+ * @apiErrorExample {json} api/biri/4213412fadsfsadsadsad421:
+ *  {
+ *  "error": "Request failed with status code 404"
+ *  }
+ * 
+ *
+ */
+function user() { return; }
 
 
 
@@ -528,41 +669,6 @@ function getSearch() {
   let va;
 }
 
-/**
- * @api {get} /api/biri/:nick tek kullanıcı GETir.
- * @apiName GetUser
- * @apiGroup user
- * @apiDescription nick ile kullanıcı bilgisi getiren endpoint.
- * @apiVersion 0.0.1
- *
- * @apiParam {String} nick          kullanıcı nick'i
- *
- * @apiSuccess {String} nick        kullanıcı nick'i
- * @apiSuccess {String} entry_count_total       kullanıcının toplam entry sayısı.
- * @apiSuccess {String} entry_count_lastmonth   son ay entry sayısı.
- * @apiSuccess {String} entry_count_lastweek     son hafta entry sayısı.
- * @apiSuccess {String} entry_count_today       bugünkü entry sayısı.
- * @apiSuccess {String} last_entry_time         son entry girme zamanı.
- *
- * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
- {
-  "nick": "ssg",
-  "entry_count_total": "50048",
-  "entry_count_lastmonth": "67",
-  "entry_count_lastweek": "25",
-  "entry_count_today": "0",
-  "last_entry_time": "evvelsi gün"
-}
- *
- *
- * @apiErrorExample Error-Response:
- *     HTTP/1.1 404 Not Found
- * {"error":"Request failed with status code 404"}
- */
-function getUser() {
-  let va;
-}
 
 
 
