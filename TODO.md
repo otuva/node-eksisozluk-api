@@ -1,4 +1,5 @@
-disamb calismiyor duzelt
+<!--https://eksisozluk.com/23-ocak-2022-wolf-pubda-oldurulesiye-dovulmek--7154265--> 
+eger baslikta pinlenmis entry varsa onu da dondur
 
 kullanici badge endpointi
 
@@ -8,6 +9,8 @@ belki login ve kullanici islemleri endpointleri.
 firefox veya chromedan session token parselama secenegi?
 
 ---
+
+~~disamb calismiyor duzelt~~
 
 ~~/kanal endpointi olustur~~
 
