@@ -1,5 +1,3 @@
-// require('dotenv').config();
-
 const api = {
   name: 'eksisozluk-api',
   endpoint: '/api',
