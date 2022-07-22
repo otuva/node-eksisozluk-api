@@ -20,10 +20,12 @@ cd eksisozluk-api
 npm i
 npm run start
 ```
+![image](https://user-images.githubusercontent.com/67955086/180391177-2bb8d374-a745-4b5f-b4c7-b272a8d5f8e7.png)
+
 ### Demo
 
-#### eksisozluk-api: api [documantation](https://otuva-eksiapi.herokuapp.com/doc/)
-#### eksisozluk-api: api [(ssg'nin profili)](https://otuva-eksiapi.herokuapp.com/api/biri/ssg)
+- #### eksisozluk-api: api [documantation](https://otuva-eksiapi.herokuapp.com/doc/)
+- #### eksisozluk-api: api [(ssg'nin profili)](https://otuva-eksiapi.herokuapp.com/api/biri/ssg)
 
 ### Ozellikler
 
@@ -37,6 +39,10 @@ npm run start
 - Arama, otomatik tamamlama
 - Baslik listeleme ve entryler icin degismeyen format.
 - **NOT: Endpoint formatlarinin degistigi durumlar api dokumaninda belirtilmistir. (Tum apide yalnizca 2 durumda degisim oluyor.)**
+    - Eger configden kullanici son entryleri getirme ozelligi kapatilirsa kullanici endpointinde lastEntries yer almaz.
+    - Eger kullanici entry sayfasi ilk sayfaysa ve pinli entry varsa pinnedEntry adli obje dondurur diger entry sayfalarinda yer almaz.
+
+![image](https://user-images.githubusercontent.com/67955086/180391347-bfe07603-7248-4781-b8fa-daef187eead7.png)
 
 ### Endpointler
 
@@ -58,6 +64,8 @@ npm run start
 API'yi çalıştırdıktan sonra `/doc` adresinden API'nin dokümantasyonuna ulaşabilirsiniz.
 
 apidoc-markdown ile olusturulmus markdown dokumantasyona ise [buradan](doc/README.md) ulasabilirsiniz.
+
+![image](https://user-images.githubusercontent.com/67955086/180391758-123141c1-e197-49d3-9130-55499e9710a3.png)
 
 ### Ayarlar 
 
