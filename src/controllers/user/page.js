@@ -2,15 +2,22 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const URLS = require('../../constant/urls');
 const ERRORS = require('../../constant/errors');
+const PAGES = require('../../constant/pages');
 const config = require('../../config');
 const parseEntryDateTime = require('../../utils/entry/parseEntryDateTime');
 
-module.exports = async (nick, page=1) => {
-    page = parseInt(page)
-    let response;
+module.exports = async (nick, choice, page=1) => {
+    let pageChoice, response;
+    if (PAGES[choice] === undefined) {
+        return { error: ERRORS.PAGE.INVALID };
+    }
+    else {
+        pageChoice = PAGES[choice];
+    }
+
     try {
         // https://eksisozluk.com/son-entryleri?nick=ssg&p=1
-        response = await axios.get(`${URLS.ENTRY_PAGE}${nick}&p=${page}`, {
+        response = await axios.get(`${URLS.BASE}/${pageChoice}?nick=${nick}&p=${page}`, {
             "headers": config.asyncRequestHeaders
         });
     } catch (err) {
@@ -19,6 +26,7 @@ module.exports = async (nick, page=1) => {
 
     const $ = cheerio.load(response.data, { decodeEntities: false });
     const entries = [];
+    page = parseInt(page);
 
     $('.topic-item').each((index, element) => {
         const currentElement = $(element);
