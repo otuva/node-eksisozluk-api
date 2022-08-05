@@ -1,24 +1,22 @@
 /**
- * @api {get} /api/basliklar/:choice/:page? başlıkları getir.
+ * @api {get} /api/topic/list/:choice/:page? başlıkları getir.
  * @apiName topicList
  * @apiGroup başlık
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/basliklar/gundem
+ *     curl -i http://localhost:3000/api/topic/list/gundem
  * @apiExample {curl} Example curl sayfa:
- *     curl -i http://localhost:3000/api/basliklar/gundem/2
+ *     curl -i http://localhost:3000/api/topic/list/gundem/2
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/basliklar/gundem")
+ *     req = r.get("http://localhost:3000/api/topic/list/gundem")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/basliklar/gundem").then(...)
+ *     req = axios.get("http://localhost:3000/api/topic/list/gundem").then(...)
  * 
  * @apiDescription Secilen kategorideki (gündem, tarihte bugun vs.) başlıkları getiren endpoint. 
  * 
- * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
- * 
- * Listenebilecek secenekler config dosyasindan belirlenir.
+ * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna `/SAYI` ekleyebilirsiniz.
  * 
  * Baslik kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.
  * 
@@ -37,7 +35,7 @@
  * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
  * "totalTopicCount": 299,
  * "totalPageCount": 6,
@@ -63,12 +61,12 @@
  * @apiError TopicNotFound Aranan kategori gecerli ama hicbir baslik bulunamadi.
  * @apiError TopicIsInvalid Gecerli bir kategori degil.
  * 
- * @apiErrorExample {json} api/basliklar/gundem/412:
+ * @apiErrorExample {json} api/topic/list/gundem/412:
  *  {
  *  "error": "Topic not found"
  *  }
  * 
- * @apiErrorExample {json} api/basliklar/gundam:
+ * @apiErrorExample {json} api/topic/list/gundam:
  *  {
  *  "error": "Topic is invalid"
  *  }
@@ -78,26 +76,24 @@
 function topicList() { return; }
 
 /**
- * @api {get} /api/basliklar/kanal/:choice/:page? kanallari getir.
+ * @api {get} /api/topic/list/channel/:choice/:page? kanallari getir.
  * @apiName topicListChannel
  * @apiGroup başlık
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/basliklar/kanal/haber
+ *     curl -i http://localhost:3000/api/topic/list/channel/haber
  * @apiExample {curl} Example curl sayfa:
- *     curl -i http://localhost:3000/api/basliklar/kanal/haber/2
+ *     curl -i http://localhost:3000/api/topic/list/channel/haber/2
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/basliklar/kanal/haber")
+ *     req = r.get("http://localhost:3000/api/topic/list/channel/haber")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/basliklar/kanal/haber").then(...)
+ *     req = axios.get("http://localhost:3000/api/topic/list/channel/haber").then(...)
  * 
  * @apiDescription Secilen kanala ait (haber, bilim vs.) başlıkları getiren endpoint. 
  * 
- * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
- * 
- * Listenebilecek kanallar config dosyasindan belirlenir.
+ * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna `/SAYI` ekleyebilirsiniz.
  * 
  * Kanal kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.
  * 
@@ -116,7 +112,7 @@ function topicList() { return; }
  * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
  * "totalTopicCount": 150,
  * "totalPageCount": 3,
@@ -142,12 +138,12 @@ function topicList() { return; }
  * @apiError TopicNotFound Aranan kategori gecerli ama hicbir baslik bulunamadi.
  * @apiError TopicIsInvalid Gecerli bir kategori degil.
  * 
- * @apiErrorExample {json} api/basliklar/kanal/bilim/17:
+ * @apiErrorExample {json} api/topic/list/channel/bilim/17:
  *  {
  *  "error": "Topic not found"
  *  }
  * 
- * @apiErrorExample {json} api/basliklar/kanal/asd:
+ * @apiErrorExample {json} api/topic/list/channel/asd:
  *  {
  *  "error": "Topic is invalid"
  *  }
@@ -157,35 +153,35 @@ function topicList() { return; }
 function topicList() { return; }
 
 /**
- * @api {get} /api/baslik/:slug/:page? tek başlık getir.
+ * @api {get} /api/topic/:slug/:page? tek başlık getir.
  * @apiName topic
  * @apiGroup başlık
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/baslik/pena
+ *     curl -i http://localhost:3000/api/topic/pena
  * @apiExample {curl} Example curl sayfa:
- *     curl -i http://localhost:3000/api/baslik/pena/2
+ *     curl -i http://localhost:3000/api/topic/pena/2
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/baslik/pena")
+ *     req = r.get("http://localhost:3000/api/topic/pena")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/baslik/pena").then(...)
+ *     req = axios.get("http://localhost:3000/api/topic/pena").then(...)
  * 
  * @apiDescription Spesifik başlığı entry'leri ile birlikte getiren endpoint. 
  * slug yerine basliğin kendisini birebir yazarsaniz da calisir: 
  * 
  * örneğin: 
- * `http://localhost:3000/api/baslik/veda ederken 2020'ye bir not bırak`
+ * `http://localhost:3000/api/topic/veda ederken 2020'ye bir not bırak`
  * 
  * Full slug ise bu sekil gorunur (baslik--id):
- * `/baslik/pena--31782`
+ * `pena--31782`
  * 
  * Eger baslik slugi full halinde degilse ve `config.topic.allowRedirect` true degerine sahipse tam haline yonlendirir.
  * 
- * Ornek:    `http://localhost:3000/api/baslik/insanlık tarihinin en kötü iki senesi 536 ve 537`
+ * Ornek:    `http://localhost:3000/api/topic/insanlık tarihinin en kötü iki senesi 536 ve 537`
  * 
- * Son hali: `http://localhost:3000/api/baslik/insanlik-tarihinin-en-kotu-iki-senesi-536-ve-537--7341301/1`
+ * Son hali: `http://localhost:3000/api/topic/insanlik-tarihinin-en-kotu-iki-senesi-536-ve-537--7341301/1`
  * 
  * @apiParam {String} slug getirilecek baslik
  * @apiParam {Number} [page=1] getirilecek sayfa
@@ -223,7 +219,7 @@ function topicList() { return; }
  * 
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
  * "topicID": 31872,
  * "disambiguations": [
@@ -291,7 +287,7 @@ function topicList() { return; }
  * 
  * @apiError RequestFailedWithStatusCode404 Baslik bulunamadi.
  * 
- * @apiErrorExample {json} api/baslik/cdsaas:
+ * @apiErrorExample {json} api/topic/cdsaas:
  *  {
  *    "error": "Request failed with status code 404"
  *  }
@@ -302,18 +298,18 @@ function topicList() { return; }
 function topic() { return; }
 
 /**
- * @api {get} /api/debe/  debe getir.
+ * @api {get} /api/index/debe  debe getir.
  * @apiName debe
  * @apiGroup debe
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/debe
+ *     curl -i http://localhost:3000/api/index/debe
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/debe")
+ *     req = r.get("http://localhost:3000/api/index/debe")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/debe").then(...)
+ *     req = axios.get("http://localhost:3000/api/index/debe").then(...)
  * 
  * @apiDescription debeleri getiren endpoint. 
  * debe'deki tüm entry'lerin bilgileri döner.
@@ -328,7 +324,7 @@ function topic() { return; }
  * @apiSuccess (200) {String} entries.title entryin basligi.
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
  * "info": {
  *   "date": "2022-07-15",
@@ -391,7 +387,7 @@ function debe() { return; }
  * 
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
  * "id": 139730148,
  * "title": "simcity",
@@ -431,18 +427,18 @@ function debe() { return; }
 function entry() { return; }
 
 /**
- * @api {get} /api/biri/:nick tek kullanıcı getir.
+ * @api {get} /api/user/:nick tek kullanıcı getir.
  * @apiName user
  * @apiGroup kullanici
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/biri/ssg
+ *     curl -i http://localhost:3000/api/user/ssg
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/biri/ssg")
+ *     req = r.get("http://localhost:3000/api/user/ssg")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/biri/ssg").then(...)
+ *     req = axios.get("http://localhost:3000/api/user/ssg").then(...)
  * 
  * @apiDescription nick ile kullanıcı bilgisi getiren endpoint.
  * 
@@ -512,7 +508,7 @@ function entry() { return; }
  * @apiSuccess (200) {String} lastEntries.entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
   "nick": "ssg",
   "isUserCaylak": false,
@@ -567,7 +563,7 @@ function entry() { return; }
  * 
  * @apiError RequestFailedWithStatusCode404 kullanici bulunamadi.
  * 
- * @apiErrorExample {json} api/biri/4213412fadsfsadsadsad421:
+ * @apiErrorExample {json} api/user/4213412fadsfsadsadsad421:
  *  {
  *  "error": "Request failed with status code 404"
  *  }
@@ -577,20 +573,20 @@ function entry() { return; }
 function user() { return; }
 
 /**
- * @api {get} /api/son-entryleri/:nick/:page? entry sayfasini getir.
+ * @api {get} /api/user/:nick/entries/:page? entry sayfasini getir.
  * @apiName page
  * @apiGroup kullanici
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/son-entryleri/ssg
+ *     curl -i http://localhost:3000/api/user/ssg/entries
  * @apiExample {curl} Example curl sayfa:
- *     curl -i http://localhost:3000/api/son-entryleri/ssg/2
+ *     curl -i http://localhost:3000/api/user/ssg/entries/2
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/son-entryleri/ssg")
+ *     req = r.get("http://localhost:3000/api/user/ssg/entries")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/son-entryleri/ssg").then(...)
+ *     req = axios.get("http://localhost:3000/api/user/ssg/entries").then(...)
  * 
  * @apiDescription kullanicinin girdigi entry sayfalarini getiren endpoint.
  * 
@@ -630,7 +626,7 @@ function user() { return; }
  * 
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
   "entries": [
     {
@@ -659,7 +655,7 @@ function user() { return; }
  * 
  * @apiError PageNotFound sayfa bulunamadi.
  * 
- * @apiErrorExample {json} api/son-entryleri/ssg/54356:
+ * @apiErrorExample {json} api/user/ssg/entries/54356:
  *  {
  *    "error": "Page not found"
  *  }
@@ -668,34 +664,35 @@ function user() { return; }
 function page() { return; }
 
 /**
- * @api {get} /api/ara/:query arama sonucunu getir.
+ * @api {get} /api/index/search/:query/:page? arama sonucunu getir.
  * @apiName search
  * @apiGroup arama
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/ara/2022
+ *     curl -i http://localhost:3000/api/index/search/2022
  * @apiExample {curl} Example curl sayfa:
- *     curl -i http://localhost:3000/api/ara/2022/2
+ *     curl -i http://localhost:3000/api/index/search/2022/2
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/ara/2022")
+ *     req = r.get("http://localhost:3000/api/index/search/2022")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/ara/2022").then(...)
+ *     req = axios.get("http://localhost:3000/api/index/search/2022").then(...)
  * 
  * @apiDescription site içi arama yapan endpoint.
  * 
  * boslukla ayrilmis birden cok kelime veya tek aranabilir
  * 
- * - `api/ara/mayonez`
+ * - `api/index/search/mayonez`
  * 
- * - `api/ara/ketcap mayonez`
+ * - `api/index/search/ketcap mayonez`
  * 
  * gibi.
  * 
  * Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.
  * 
  * @apiParam {String} query arama kelimesi/kelimeleri
+ * @apiParam {Number} [page=1] getirilecek sayfa
  *
  * @apiSuccess (200) {Number} totalTopicCount toplam baslik adeti.
  * @apiSuccess (200) {Number} totalPageCount toplam kac sayfa baslik oldugu.
@@ -707,7 +704,7 @@ function page() { return; }
  * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
   "totalTopicCount": 52,
   "totalPageCount": 2,
@@ -732,7 +729,7 @@ function page() { return; }
  * 
  * @apiError SearchReturnedNoResults Arama sonucu bos dondu.
  * 
- * @apiErrorExample {json} api/ara/dsadsaads:
+ * @apiErrorExample {json} api/index/search/dsadsaads:
  *  {"error":"Search returned no results"}
  * 
  *
@@ -740,18 +737,18 @@ function page() { return; }
 function search() { return; }
 
 /**
- * @api {get} /api/autocomplete/:query otomatik tamamlamayi getir.
+ * @api {get} /api/index/autocomplete/:query otomatik tamamlamayi getir.
  * @apiName autoComplete
  * @apiGroup arama
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/autocomplete/pena
+ *     curl -i http://localhost:3000/api/index/autocomplete/pena
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/autocomplete/pena")
+ *     req = r.get("http://localhost:3000/api/index/autocomplete/pena")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/autocomplete/pena").then(...)
+ *     req = axios.get("http://localhost:3000/api/index/autocomplete/pena").then(...)
  * 
  * @apiDescription Otomatik tamamlama sağlayan endpoint.
  * 
@@ -764,7 +761,7 @@ function search() { return; }
  * @apiSuccess (200) {String[]} Nicks kullanici nicklerinin arrayi.
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
   "Titles": [
     "pena",
@@ -783,7 +780,7 @@ function search() { return; }
  * 
  * @apiError SearchReturnedNoResults Arama sonucu bos dondu.
  * 
- * @apiErrorExample {json} api/autocomplete/asd fdsaafsd:
+ * @apiErrorExample {json} api/index/autocomplete/asd fdsaafsd:
  *  {"error":"Search returned no results"}
  * 
  *
@@ -791,18 +788,18 @@ function search() { return; }
 function autoComplete() { return; }
 
 /**
- * @api {get} /api/kanallar tum kanallari getir.
+ * @api {get} /api/index/channels tum kanallari getir.
  * @apiName allChannels
  * @apiGroup etc
  * @apiVersion 0.0.1
  * 
  * @apiExample {curl} Example curl:
- *     curl -i http://localhost:3000/api/kanallar
+ *     curl -i http://localhost:3000/api/index/channels
  * @apiExample {python} Example python:
  *     import requests as r
- *     req = r.get("http://localhost:3000/api/kanallar")
+ *     req = r.get("http://localhost:3000/api/index/channels")
  * @apiExample {javascript} Example axios(js):
- *     req = axios.get("http://localhost:3000/api/kanallar").then(...)
+ *     req = axios.get("http://localhost:3000/api/index/channels").then(...)
  * 
  * @apiDescription Tum kanallari getiren endpoint. 
  * 
@@ -814,7 +811,7 @@ function autoComplete() { return; }
  * @apiSuccess (200) {String} channels.description kanalin açiklamasi.
  *
  * @apiSuccessExample Success-Response:
- * HTTP/1.1 200 OK
+ * 
  * {
   "channels": [
     {
