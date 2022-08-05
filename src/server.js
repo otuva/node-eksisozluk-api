@@ -3,13 +3,15 @@
 const express = require('express');
 const chalk = require('chalk');
 const config = require('./config');
+const path = require('path');
 const app = require('./server/app');
 const router = require('./server/router');
 
 const port = process.env.PORT || 3000;
 
 if (config.doc.enabled) {
-    app.use(config.doc.endpoint, express.static('./doc/public'));
+    app.use(config.doc.endpoint, express.static(path.join(__dirname, "doc","public")));
+    
 }
 
 if (config.api.limiting.enabled) {
