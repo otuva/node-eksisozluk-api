@@ -1,4 +1,4 @@
-# yeni endpoint ekleme
+# yeni endpoint ekleme checklist
 - doc/doc.js guncelle
 - ./readme guncelle
 - doc/footer guncelle
@@ -6,12 +6,14 @@
 - constant/urls guncelle 
 - doc-flush yaz
 
-# readme guncelleme
+# readme guncelleme checklist
 - ./readme guncelle
 - doc/header guncelle
 
 
 arama sonuclarinda b yaziyorsa uc sifir ekle.
+
+fonksiyonlara jsdoc ekle 
 
 <!-- https://eksisozluk.com/23-ocak-2022-wolf-pubda-oldurulesiye-dovulmek--7154265 --> 
 eger baslikta pinlenmis entry varsa onu da dondur
