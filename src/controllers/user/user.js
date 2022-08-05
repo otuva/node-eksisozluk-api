@@ -51,7 +51,7 @@ module.exports = async (nick) => {
     });
 
     let lastEntries;
-    if (config.user.autoRetrieveLastEntries) lastEntries = await page(nick, 1);
+    if (config.user.autoRetrieveLastEntries) lastEntries = await page(nick, 'entries', 1);
 
     return {
         nick,
