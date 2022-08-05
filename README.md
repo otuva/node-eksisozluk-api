@@ -2,7 +2,7 @@
 
 ## Resmi olmayan eksisozluk api
 
-Ekşi sözlük için geliştirilmiş node.js tabanlı server API.
+Ekşi sözlük için geliştirilmiş node api modulu ve express tabanlı REST API.
 Ekşisözlükten çekilen veriler json formatında kullanıcıya geri döndürülür
 
 Eksisozluge son gelen arayuz guncellemesine gore crawl eder.
@@ -36,6 +36,28 @@ eksisozluk # run
 ```
 
 ![image](https://user-images.githubusercontent.com/67955086/180391177-2bb8d374-a745-4b5f-b4c7-b272a8d5f8e7.png)
+
+### Node.js API 
+
+npm ile kurup dokumantasyonda bulunan tum fonksiyonlari kullanabilirsiniz.
+Ornek:
+```js
+const eksisozluk = require('eksisozluk-api');
+
+eksisozluk.entry('1').then(
+    (data) => {
+        console.log(data);
+    }
+);
+
+eksisozluk.user('ssg').then(
+    (data) => {
+        console.log(data);
+    }
+);
+
+eksisozluk.startServer();
+```
 
 ### Demo
 
