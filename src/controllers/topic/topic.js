@@ -15,6 +15,7 @@ module.exports = async (slug, page = 1) => {
     }
 
     if (response.request.path !== `/${slug}?p=${page}`) {
+        response.request.path = response.request.path.split('?')[0] // discard any parameters
         console.info(`/api/topic/${slug}/${page} --> /api/topic${response.request.path}/${page}`);
         if (config.topic.allowRedirect) {
             console.info(INFO.TOPIC.REDIRECTING);
