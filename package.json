@@ -4,7 +4,8 @@
   "description": "Latest unofficial eksisozluk api",
   "main": "main.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "clear; node src/server.js",
+    "doc-flush": "rm -r doc/public; apidoc -i doc -o doc/public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
