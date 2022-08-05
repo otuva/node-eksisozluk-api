@@ -11,13 +11,41 @@ Unofficial eksisozluk api
 <p><strong>TLDR sondadir eger dokumantasyonu okumak istemiyorsaniz atlayabilirsiniz.</strong></p>
 <p><strong>Not:</strong> Dokumantasyondaki port (3000), config dosyasinda kullanilmis default porttur.
 Eger farkli bir port seciliyse goz onunde bulundurun.</p>
-<h2>Kurulum</h2>
-<p>Bu apiyi kolaylıkla kendi bilgisayarınızda çalışır hale getirebilirsiniz.</p>
-<p>Bunun için terminalde sırasıyla şu komutları çalıştırın.</p>
+<h3>Kurulum</h3>
+<h4>Git ile</h4>
+<p>Terminalde sırasıyla şu komutları çalıştırın:</p>
 <pre><code class="language-bash">git clone https://github.com/otuva/eksisozluk-api
 cd eksisozluk-api
 npm i
 npm start
+</code></pre>
+<h4>NPM ile</h4>
+<p>Local olarak</p>
+<pre><code class="language-bash">npm i eksisozluk-api # install
+npx eksisozluk # run
+</code></pre>
+<p>Global Olarak</p>
+<pre><code class="language-bash">sudo npm install eksisozluk-api -g # install
+eksisozluk # run
+</code></pre>
+<h3>Node.js API</h3>
+<p>npm ile kurup dokumantasyonda bulunan tum fonksiyonlari kullanabilirsiniz.
+Ornek:</p>
+<pre><code class="language-js">const eksisozluk = require('eksisozluk-api');
+
+eksisozluk.entry('1').then(
+    (data) => {
+        console.log(data);
+    }
+);
+
+eksisozluk.user('ssg').then(
+    (data) => {
+        console.log(data);
+    }
+);
+
+eksisozluk.startServer();
 </code></pre>
 <hr>
 
@@ -1012,7 +1040,7 @@ req = axios.get("http://localhost:3000/api/user/ssg/entries").then(...)
 <p>nick ile kullanici gorsellerini getiren endpoint.</p>
 
 ```
-GET /user/:nick/images
+GET /api/user/:nick/images
 ```
 
 ### Parameters - `Parameter`
