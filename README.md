@@ -53,12 +53,13 @@ npm start
 | get    |     `api/topic/list/:choice/:page?`     | `/api/topic/list/gundem`        | `/api/topic/list/basiboslar/3`       | başlıkları getirir                    |
 | get    |        `api/topic/:slug/:page?`         | `/api/topic/pena`               | `/api/topic/gap year/2`              | bir başlığı getirir                   |
 | get    |             `api/entry/:id`             | `/api/entry/1`                  | &nbsp;                               | bir entry'i getirir                   |
-| get    |     `api/user/:nick/:choice/:page?`     | `/api/user/ssg/entries`         | `/api/user/ssg/weekly/2`             | bir suserin entry sayfalarini getirir |
+| get    |     `api/user/:nick/:choice/:page?`     | `/api/user/ssg/entries`         | `/api/user/ssg/most-liked/2`         | bir suserin entry sayfalarini getirir |
 | get    |            `api/index/debe`             | `/api/index/debe`               | &nbsp;                               | debe'yi getirir                       |
 | get    |            `api/user/:nick`             | `/api/user/ssg`                 | &nbsp;                               | bir suser'ı getirir                   |
 | get    |    `api/index/search/:query/:page?`     | `/api/index/search/pena`        | `/api/index/search/boston celtics/4` | arama sonucu                          |
 | get    |     `api/index/autocomplete/:query`     | `/api/index/autocomplete/pena`  | &nbsp;                               | otomatik tamamlama                    |
 | get    |          `api/index/channels`           | `/api/index/channels`           | &nbsp;                               | kanal kategorileri                    |
+| get    |         `api/user/:nick/images`         | `/api/user/ssg/images`          | &nbsp;                               | bir suserin gorsellerini getirir      |
 
 ### Dokumantasyon
 
