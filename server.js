@@ -2,10 +2,10 @@
 
 const express = require('express');
 const chalk = require('chalk');
-const config = require('./config');
+const config = require('./src/config');
 const path = require('path');
-const app = require('./server/app');
-const router = require('./server/router');
+const app = require('./src/server/app');
+const router = require('./src/server/router');
 
 const port = process.env.PORT || 3000;
 
