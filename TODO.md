@@ -1,3 +1,16 @@
+# yeni endpoint ekleme
+- doc/doc.js guncelle
+- ./readme guncelle
+- doc/footer guncelle
+- src/router guncelle 
+- constant/urls guncelle 
+- doc-flush yaz
+
+# readme guncelleme
+- ./readme guncelle
+- doc/header guncelle
+
+
 arama sonuclarinda b yaziyorsa uc sifir ekle.
 
 <!-- https://eksisozluk.com/23-ocak-2022-wolf-pubda-oldurulesiye-dovulmek--7154265 --> 
