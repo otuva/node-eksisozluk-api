@@ -19,7 +19,7 @@ Bunun için terminalde sırasıyla şu komutları çalıştırın.
 git clone https://github.com/otuva/eksisozluk-api
 cd eksisozluk-api
 npm i
-npm run start
+npm start
 ```
 
 <hr>
