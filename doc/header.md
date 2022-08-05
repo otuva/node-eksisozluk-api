@@ -9,17 +9,51 @@ ekşisözlük için geliştirilmiş resmi olmayan api.
 **Not:** Dokumantasyondaki port (3000), config dosyasinda kullanilmis default porttur. 
 Eger farkli bir port seciliyse goz onunde bulundurun.
 
-## Kurulum
+### Kurulum
 
-Bu apiyi kolaylıkla kendi bilgisayarınızda çalışır hale getirebilirsiniz.
-
-Bunun için terminalde sırasıyla şu komutları çalıştırın.
+#### Git ile
+Terminalde sırasıyla şu komutları çalıştırın:
 
 ```bash
 git clone https://github.com/otuva/eksisozluk-api
 cd eksisozluk-api
 npm i
 npm start
+```
+
+#### NPM ile
+
+Local olarak
+```bash
+npm i eksisozluk-api # install
+npx eksisozluk # run
+```
+Global Olarak
+```bash
+sudo npm install eksisozluk-api -g # install
+eksisozluk # run
+```
+
+### Node.js API 
+
+npm ile kurup dokumantasyonda bulunan tum fonksiyonlari kullanabilirsiniz.
+Ornek:
+```js
+const eksisozluk = require('eksisozluk-api');
+
+eksisozluk.entry('1').then(
+    (data) => {
+        console.log(data);
+    }
+);
+
+eksisozluk.user('ssg').then(
+    (data) => {
+        console.log(data);
+    }
+);
+
+eksisozluk.startServer();
 ```
 
 <hr>
