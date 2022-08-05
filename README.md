@@ -12,6 +12,7 @@ Bu apiyi kullanacak daha yazilmamis client icin [tiklayin](https://github.com/ot
 
 ### Kurulum
 
+#### Git ile
 Terminalde sırasıyla şu komutları çalıştırın:
 
 ```bash
@@ -19,6 +20,19 @@ git clone https://github.com/otuva/eksisozluk-api
 cd eksisozluk-api
 npm i
 npm start
+```
+
+#### NPM ile
+
+Local olarak
+```bash
+npm i eksisozluk-api # install
+npx eksisozluk # run
+```
+Global Olarak
+```bash
+sudo npm install eksisozluk-api -g # install
+eksisozluk # run
 ```
 
 ![image](https://user-images.githubusercontent.com/67955086/180391177-2bb8d374-a745-4b5f-b4c7-b272a8d5f8e7.png)
