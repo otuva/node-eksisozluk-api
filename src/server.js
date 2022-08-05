@@ -9,8 +9,7 @@ const port = process.env.PORT || 3000;
 
 const startServer = () => {
     if (config.doc.enabled) {
-        console.log(__dirname);
-        app.use(config.doc.endpoint, express.static('./doc/public'));
+        app.use(config.doc.endpoint, express.static(path.join(__dirname, '..', 'doc', 'public')));
     }
     
     if (config.api.limiting.enabled) {
