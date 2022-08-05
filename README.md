@@ -47,18 +47,18 @@ npm start
 
 ### Endpointler
 
-| method |                endpoint                 | örnek url                       | sayfali örnek url                 | açıklama                            |
-| ------ | :-------------------------------------: | ------------------------------- | --------------------------------- | ----------------------------------- |
-| get    | `api/topic/list/channel/:choice/:page?` | `/api/topic/list/channel/haber` | `/api/topic/list/channel/müzik/2` | kanal başlıklarını getirir          |
-| get    |     `api/topic/list/:choice/:page?`     | `/api/topic/list/gundem`        | `/api/topic/list/basiboslar/3`    | başlıkları getirir                  |
-| get    |        `api/topic/:slug/:page?`         | `/api/topic/pena`               | `/api/topic/gap year/2`           | bir başlığı getirir                 |
-| get    |             `api/entry/:id`             | `/api/entry/1`                  | &nbsp;                            | bir entry'i getirir                 |
-| get    |     `api/user/:nick/entries/:page?`     | `/api/user/ssg/entries`         | `/api/user/ssg/entries/2`         | bir suserin son entrylerini getirir |
-| get    |            `api/index/debe`             | `/api/index/debe`               | &nbsp;                            | debe'yi getirir                     |
-| get    |            `api/user/:nick`             | `/api/user/ssg`                 | &nbsp;                            | bir suser'ı getirir                 |
-| get    |    `api/index/search/:query/:page?`     | `/api/index/search/pena`        | `/api/index/search/boston celtics/4`       | arama sonucu                        |
-| get    |     `api/index/autocomplete/:query`     | `/api/index/autocomplete/pena`  | &nbsp;                            | otomatik tamamlama                  |
-| get    |          `api/index/channels`           | `/api/index/channels`           | &nbsp;                            | kanal kategorileri                  |
+| method |                endpoint                 | örnek url                       | sayfali örnek url                    | açıklama                              |
+| ------ | :-------------------------------------: | ------------------------------- | ------------------------------------ | ------------------------------------- |
+| get    | `api/topic/list/channel/:choice/:page?` | `/api/topic/list/channel/haber` | `/api/topic/list/channel/müzik/2`    | kanal başlıklarını getirir            |
+| get    |     `api/topic/list/:choice/:page?`     | `/api/topic/list/gundem`        | `/api/topic/list/basiboslar/3`       | başlıkları getirir                    |
+| get    |        `api/topic/:slug/:page?`         | `/api/topic/pena`               | `/api/topic/gap year/2`              | bir başlığı getirir                   |
+| get    |             `api/entry/:id`             | `/api/entry/1`                  | &nbsp;                               | bir entry'i getirir                   |
+| get    |     `api/user/:nick/:choice/:page?`     | `/api/user/ssg/entries`         | `/api/user/ssg/weekly/2`             | bir suserin entry sayfalarini getirir |
+| get    |            `api/index/debe`             | `/api/index/debe`               | &nbsp;                               | debe'yi getirir                       |
+| get    |            `api/user/:nick`             | `/api/user/ssg`                 | &nbsp;                               | bir suser'ı getirir                   |
+| get    |    `api/index/search/:query/:page?`     | `/api/index/search/pena`        | `/api/index/search/boston celtics/4` | arama sonucu                          |
+| get    |     `api/index/autocomplete/:query`     | `/api/index/autocomplete/pena`  | &nbsp;                               | otomatik tamamlama                    |
+| get    |          `api/index/channels`           | `/api/index/channels`           | &nbsp;                               | kanal kategorileri                    |
 
 ### Dokumantasyon
 
