@@ -4,6 +4,7 @@ const ERRORS = {
     },
     PAGE: {
         NOT_FOUND: "Page not found",
+        INVALID: "Invalid page",
     },
     SEARCH: {
         NOT_FOUND: "Search returned no results",
