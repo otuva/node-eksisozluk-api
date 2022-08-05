@@ -2,9 +2,9 @@
   "name": "eksisozluk-api",
   "version": "0.0.4",
   "description": "Latest unofficial eksisozluk api",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
-    "start": "clear; node src/server.js",
+    "start": "clear; node server.js",
     "doc-flush": "command -v apidoc apidoc-markdown && rm -r doc/public; apidoc -i doc -o doc/public; apidoc-markdown -i doc -o doc/README.md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +30,6 @@
     "helmet": "^5.1.0"
   },
   "bin": {
-    "eksisozluk": "src/server.js"
+    "eksisozluk": "server.js"
   }
 }
