@@ -17,7 +17,7 @@ Eger farkli bir port seciliyse goz onunde bulundurun.</p>
 <pre><code class="language-bash">git clone https://github.com/otuva/eksisozluk-api
 cd eksisozluk-api
 npm i
-npm run start
+npm start
 </code></pre>
 <hr>
 
@@ -48,10 +48,10 @@ ___
 ## <a name='arama-sonucunu-getir.'></a> arama sonucunu getir.
 [Back to top](#top)
 
-<p>site içi arama yapan endpoint.</p> <p>boslukla ayrilmis birden cok kelime veya tek aranabilir</p> <ul> <li> <p><code>api/ara/mayonez</code></p> </li> <li> <p><code>api/ara/ketcap mayonez</code></p> </li> </ul> <p>gibi.</p> <p>Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.</p>
+<p>site içi arama yapan endpoint.</p> <p>boslukla ayrilmis birden cok kelime veya tek aranabilir</p> <ul> <li> <p><code>api/index/search/mayonez</code></p> </li> <li> <p><code>api/index/search/ketcap mayonez</code></p> </li> </ul> <p>gibi.</p> <p>Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.</p>
 
 ```
-GET /api/ara/:query
+GET /api/index/search/:query/:page?
 ```
 
 ### Parameters - `Parameter`
@@ -59,32 +59,33 @@ GET /api/ara/:query
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | query | `String` | <p>arama kelimesi/kelimeleri</p> |
+| page | `Number` | **optional** <p>getirilecek sayfa</p>_Default value: 1_<br> |
 
 ### Examples
 
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/ara/2022
+curl -i http://localhost:3000/api/index/search/2022
 ```
 
 Example curl sayfa:
 
 ```curl
-curl -i http://localhost:3000/api/ara/2022/2
+curl -i http://localhost:3000/api/index/search/2022/2
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/ara/2022")
+req = r.get("http://localhost:3000/api/index/search/2022")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/ara/2022").then(...)
+req = axios.get("http://localhost:3000/api/index/search/2022").then(...)
 ```
 
 ### Success response
@@ -107,7 +108,7 @@ req = axios.get("http://localhost:3000/api/ara/2022").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
   "totalTopicCount": 52,
   "totalPageCount": 2,
@@ -141,7 +142,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/ara/dsadsaads:`
+#### Error response example - `api/index/search/dsadsaads:`
 
 ```json
 {"error":"Search returned no results"}
@@ -153,7 +154,7 @@ HTTP/1.1 200 OK
 <p>Otomatik tamamlama sağlayan endpoint.</p> <p>Return edilen cevaptaki arraylerin ikisi de bos ise hata dondurur degilse eksi sozlukten alinan cevabi direkt olarak dondurur.</p>
 
 ```
-GET /api/autocomplete/:query
+GET /api/index/autocomplete/:query
 ```
 
 ### Parameters - `Parameter`
@@ -167,20 +168,20 @@ GET /api/autocomplete/:query
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/autocomplete/pena
+curl -i http://localhost:3000/api/index/autocomplete/pena
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/autocomplete/pena")
+req = r.get("http://localhost:3000/api/index/autocomplete/pena")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/autocomplete/pena").then(...)
+req = axios.get("http://localhost:3000/api/index/autocomplete/pena").then(...)
 ```
 
 ### Success response
@@ -198,7 +199,7 @@ req = axios.get("http://localhost:3000/api/autocomplete/pena").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
   "Titles": [
     "pena",
@@ -226,7 +227,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/autocomplete/asd fdsaafsd:`
+#### Error response example - `api/index/autocomplete/asd fdsaafsd:`
 
 ```json
 {"error":"Search returned no results"}
@@ -237,10 +238,10 @@ HTTP/1.1 200 OK
 ## <a name='başlıkları-getir.'></a> başlıkları getir.
 [Back to top](#top)
 
-<p>Secilen kategorideki (gündem, tarihte bugun vs.) başlıkları getiren endpoint.</p> <p>Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.</p> <p>Listenebilecek secenekler config dosyasindan belirlenir.</p> <p>Baslik kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.</p> <p>Kanallar icin diger endpointi kullaniniz.</p>
+<p>Secilen kategorideki (gündem, tarihte bugun vs.) başlıkları getiren endpoint.</p> <p>Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna <code>/SAYI</code> ekleyebilirsiniz.</p> <p>Baslik kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.</p> <p>Kanallar icin diger endpointi kullaniniz.</p>
 
 ```
-GET /api/basliklar/:choice/:page?
+GET /api/topic/list/:choice/:page?
 ```
 
 ### Parameters - `Parameter`
@@ -255,26 +256,26 @@ GET /api/basliklar/:choice/:page?
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/basliklar/gundem
+curl -i http://localhost:3000/api/topic/list/gundem
 ```
 
 Example curl sayfa:
 
 ```curl
-curl -i http://localhost:3000/api/basliklar/gundem/2
+curl -i http://localhost:3000/api/topic/list/gundem/2
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/basliklar/gundem")
+req = r.get("http://localhost:3000/api/topic/list/gundem")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/basliklar/gundem").then(...)
+req = axios.get("http://localhost:3000/api/topic/list/gundem").then(...)
 ```
 
 ### Success response
@@ -297,7 +298,7 @@ req = axios.get("http://localhost:3000/api/basliklar/gundem").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
 "totalTopicCount": 299,
 "totalPageCount": 6,
@@ -332,7 +333,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/basliklar/gundem/412:`
+#### Error response example - `api/topic/list/gundem/412:`
 
 ```json
 {
@@ -340,7 +341,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### Error response example - `api/basliklar/gundam:`
+#### Error response example - `api/topic/list/gundam:`
 
 ```json
 {
@@ -351,10 +352,10 @@ HTTP/1.1 200 OK
 ## <a name='kanallari-getir.'></a> kanallari getir.
 [Back to top](#top)
 
-<p>Secilen kanala ait (haber, bilim vs.) başlıkları getiren endpoint.</p> <p>Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna /SAYI ekleyebilirsiniz.</p> <p>Listenebilecek kanallar config dosyasindan belirlenir.</p> <p>Kanal kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.</p> <p>Kanal kategorilerinin turkce karakter icermesine dikkat ediniz. Ornegin 'muzik' kategorisi hata verecekken 'müzik' kategorisi sorunsuz calisacaktir.</p>
+<p>Secilen kanala ait (haber, bilim vs.) başlıkları getiren endpoint.</p> <p>Sayfa parametresi opsiyonel olup diger sayfalari getirmek icin url sonuna <code>/SAYI</code> ekleyebilirsiniz.</p> <p>Kanal kategorisinin alabilecegi degerler icin gereken parametrelerin altindaki izin verilen degerlere bakiniz.</p> <p>Kanal kategorilerinin turkce karakter icermesine dikkat ediniz. Ornegin 'muzik' kategorisi hata verecekken 'müzik' kategorisi sorunsuz calisacaktir.</p>
 
 ```
-GET /api/basliklar/kanal/:choice/:page?
+GET /api/topic/list/channel/:choice/:page?
 ```
 
 ### Parameters - `Parameter`
@@ -369,26 +370,26 @@ GET /api/basliklar/kanal/:choice/:page?
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/basliklar/kanal/haber
+curl -i http://localhost:3000/api/topic/list/channel/haber
 ```
 
 Example curl sayfa:
 
 ```curl
-curl -i http://localhost:3000/api/basliklar/kanal/haber/2
+curl -i http://localhost:3000/api/topic/list/channel/haber/2
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/basliklar/kanal/haber")
+req = r.get("http://localhost:3000/api/topic/list/channel/haber")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/basliklar/kanal/haber").then(...)
+req = axios.get("http://localhost:3000/api/topic/list/channel/haber").then(...)
 ```
 
 ### Success response
@@ -411,7 +412,7 @@ req = axios.get("http://localhost:3000/api/basliklar/kanal/haber").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
 "totalTopicCount": 150,
 "totalPageCount": 3,
@@ -446,7 +447,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/basliklar/kanal/bilim/17:`
+#### Error response example - `api/topic/list/channel/bilim/17:`
 
 ```json
 {
@@ -454,7 +455,7 @@ HTTP/1.1 200 OK
 }
 ```
 
-#### Error response example - `api/basliklar/kanal/asd:`
+#### Error response example - `api/topic/list/channel/asd:`
 
 ```json
 {
@@ -465,10 +466,10 @@ HTTP/1.1 200 OK
 ## <a name='tek-başlık-getir.'></a> tek başlık getir.
 [Back to top](#top)
 
-<p>Spesifik başlığı entry'leri ile birlikte getiren endpoint. slug yerine basliğin kendisini birebir yazarsaniz da calisir:</p> <p>örneğin: <code>http://localhost:3000/api/baslik/veda ederken 2020'ye bir not bırak</code></p> <p>Full slug ise bu sekil gorunur (baslik--id): <code>/baslik/pena--31782</code></p> <p>Eger baslik slugi full halinde degilse ve <code>config.topic.allowRedirect</code> true degerine sahipse tam haline yonlendirir.</p> <p>Ornek:    <code>http://localhost:3000/api/baslik/insanlık tarihinin en kötü iki senesi 536 ve 537</code></p> <p>Son hali: <code>http://localhost:3000/api/baslik/insanlik-tarihinin-en-kotu-iki-senesi-536-ve-537--7341301/1</code></p>
+<p>Spesifik başlığı entry'leri ile birlikte getiren endpoint. slug yerine basliğin kendisini birebir yazarsaniz da calisir:</p> <p>örneğin: <code>http://localhost:3000/api/topic/veda ederken 2020'ye bir not bırak</code></p> <p>Full slug ise bu sekil gorunur (baslik--id): <code>pena--31782</code></p> <p>Eger baslik slugi full halinde degilse ve <code>config.topic.allowRedirect</code> true degerine sahipse tam haline yonlendirir.</p> <p>Ornek:    <code>http://localhost:3000/api/topic/insanlık tarihinin en kötü iki senesi 536 ve 537</code></p> <p>Son hali: <code>http://localhost:3000/api/topic/insanlik-tarihinin-en-kotu-iki-senesi-536-ve-537--7341301/1</code></p>
 
 ```
-GET /api/baslik/:slug/:page?
+GET /api/topic/:slug/:page?
 ```
 
 ### Parameters - `Parameter`
@@ -483,26 +484,26 @@ GET /api/baslik/:slug/:page?
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/baslik/pena
+curl -i http://localhost:3000/api/topic/pena
 ```
 
 Example curl sayfa:
 
 ```curl
-curl -i http://localhost:3000/api/baslik/pena/2
+curl -i http://localhost:3000/api/topic/pena/2
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/baslik/pena")
+req = r.get("http://localhost:3000/api/topic/pena")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/baslik/pena").then(...)
+req = axios.get("http://localhost:3000/api/topic/pena").then(...)
 ```
 
 ### Success response
@@ -543,7 +544,7 @@ req = axios.get("http://localhost:3000/api/baslik/pena").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
 "topicID": 31872,
 "disambiguations": [
@@ -620,7 +621,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/baslik/cdsaas:`
+#### Error response example - `api/topic/cdsaas:`
 
 ```json
 {
@@ -636,7 +637,7 @@ HTTP/1.1 200 OK
 <p>debeleri getiren endpoint. debe'deki tüm entry'lerin bilgileri döner.</p>
 
 ```
-GET /api/debe/
+GET /api/index/debe
 ```
 
 ### Examples
@@ -644,20 +645,20 @@ GET /api/debe/
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/debe
+curl -i http://localhost:3000/api/index/debe
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/debe")
+req = r.get("http://localhost:3000/api/index/debe")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/debe").then(...)
+req = axios.get("http://localhost:3000/api/index/debe").then(...)
 ```
 
 ### Success response
@@ -679,7 +680,7 @@ req = axios.get("http://localhost:3000/api/debe").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
 "info": {
   "date": "2022-07-15",
@@ -767,7 +768,7 @@ req = axios.get("http://localhost:3000/api/entry/139983585").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
 "id": 139730148,
 "title": "simcity",
@@ -826,7 +827,7 @@ HTTP/1.1 200 OK
 <p>Tum kanallari getiren endpoint.</p> <p><code>¯\_(ツ)_/¯</code></p>
 
 ```
-GET /api/kanallar
+GET /api/index/channels
 ```
 
 ### Examples
@@ -834,20 +835,20 @@ GET /api/kanallar
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/kanallar
+curl -i http://localhost:3000/api/index/channels
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/kanallar")
+req = r.get("http://localhost:3000/api/index/channels")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/kanallar").then(...)
+req = axios.get("http://localhost:3000/api/index/channels").then(...)
 ```
 
 ### Success response
@@ -866,7 +867,7 @@ req = axios.get("http://localhost:3000/api/kanallar").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
   "channels": [
     {
@@ -892,7 +893,7 @@ HTTP/1.1 200 OK
 <p>kullanicinin girdigi entry sayfalarini getiren endpoint.</p> <p>eger sayfa parametresi verilmezse ilk sayfayi dondurur.</p> <p>eger ilk sayfa ise ve kullanicinin sabitledigi bir entry varsa <code>entries</code> arrayindan once <code>pinnedEntry</code> objesi dondurur. formatin degistigi tek durum budur.</p> <p>diger sayfalarda ise veya sabitlenen entry yoksa sadece <code>entries</code> arrayi dondurur. null degeriyle bile olsa <code>pinnedEntry</code> diye bir bolum direkt yer almaz.</p>
 
 ```
-GET /api/son-entryleri/:nick/:page?
+GET /api/user/:nick/entries/:page?
 ```
 
 ### Parameters - `Parameter`
@@ -907,26 +908,26 @@ GET /api/son-entryleri/:nick/:page?
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/son-entryleri/ssg
+curl -i http://localhost:3000/api/user/ssg/entries
 ```
 
 Example curl sayfa:
 
 ```curl
-curl -i http://localhost:3000/api/son-entryleri/ssg/2
+curl -i http://localhost:3000/api/user/ssg/entries/2
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/son-entryleri/ssg")
+req = r.get("http://localhost:3000/api/user/ssg/entries")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/son-entryleri/ssg").then(...)
+req = axios.get("http://localhost:3000/api/user/ssg/entries").then(...)
 ```
 
 ### Success response
@@ -959,7 +960,7 @@ req = axios.get("http://localhost:3000/api/son-entryleri/ssg").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
   "entries": [
     {
@@ -997,7 +998,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/son-entryleri/ssg/54356:`
+#### Error response example - `api/user/ssg/entries/54356:`
 
 ```json
 {
@@ -1011,7 +1012,7 @@ HTTP/1.1 200 OK
 <p>nick ile kullanıcı bilgisi getiren endpoint.</p> <p>Bu endpoint kullanicinin son entrylerini gostermek icin otomatik olarak page endpoini de cagirir.</p> <p>Devre disi birakmak icin <code>config.user.autoRetrieveLastEntries</code> <code>false</code> yapilabilir. Eger yapilirsa <code>lastEntries</code> kismi dondurulmez.</p>
 
 ```
-GET /api/biri/:nick
+GET /api/user/:nick
 ```
 
 ### Parameters - `Parameter`
@@ -1025,20 +1026,20 @@ GET /api/biri/:nick
 Example curl:
 
 ```curl
-curl -i http://localhost:3000/api/biri/ssg
+curl -i http://localhost:3000/api/user/ssg
 ```
 
 Example python:
 
 ```python
 import requests as r
-req = r.get("http://localhost:3000/api/biri/ssg")
+req = r.get("http://localhost:3000/api/user/ssg")
 ```
 
 Example axios(js):
 
 ```javascript
-req = axios.get("http://localhost:3000/api/biri/ssg").then(...)
+req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 ```
 
 ### Success response
@@ -1101,7 +1102,7 @@ req = axios.get("http://localhost:3000/api/biri/ssg").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-HTTP/1.1 200 OK
+
 {
   "nick": "ssg",
   "isUserCaylak": false,
@@ -1165,7 +1166,7 @@ HTTP/1.1 200 OK
 
 ### Error response example
 
-#### Error response example - `api/biri/4213412fadsfsadsadsad421:`
+#### Error response example - `api/user/4213412fadsfsadsadsad421:`
 
 ```json
 {
@@ -1191,25 +1192,25 @@ HTTP/1.1 200 OK
 <tr>
 <td>topicList</td>
 <td>get</td>
-<td style="text-align:center"><code>api/basliklar/kanal/:choice/:page?</code></td>
-<td><a href="/api/basliklar/kanal/haber">/api/basliklar/kanal/haber</a></td>
-<td><a href="/api/basliklar/kanal/m%C3%BCzik/2">/api/basliklar/kanal/müzik/2</a></td>
+<td style="text-align:center"><code>api/topic/list/channel/:choice/:page?</code></td>
+<td><a href="/api/topic/list/channel/haber">/api/topic/list/channel/haber</a></td>
+<td><a href="/api/topic/list/channel/m%C3%BCzik/2">/api/topic/list/channel/müzik/2</a></td>
 <td>kanal başlıklarını getirir</td>
 </tr>
 <tr>
 <td>topicList</td>
 <td>get</td>
-<td style="text-align:center"><code>api/basliklar/:choice/:page?</code></td>
-<td><a href="/api/basliklar/gundem">/api/basliklar/gundem</a></td>
-<td><a href="/api/basliklar/basiboslar/3">/api/basliklar/basiboslar/3</a></td>
+<td style="text-align:center"><code>api/topic/list/:choice/:page?</code></td>
+<td><a href="/api/topic/gundem">/api/topic/gundem</a></td>
+<td><a href="/api/topic/basiboslar/3">/api/topic/basiboslar/3</a></td>
 <td>başlıkları getirir</td>
 </tr>
 <tr>
 <td>topic</td>
 <td>get</td>
-<td style="text-align:center"><code>api/baslik/:slug/:page?</code></td>
-<td><a href="/api/baslik/pena">/api/baslik/pena</a></td>
-<td><a href="/api/baslik/gap-year/2">/api/baslik/gap year/2</a></td>
+<td style="text-align:center"><code>api/topic/:slug/:page?</code></td>
+<td><a href="/api/topic/pena">/api/topic/pena</a></td>
+<td><a href="/api/topic/gap-year/2">/api/topic/gap-year/2</a></td>
 <td>bir başlığı getirir</td>
 </tr>
 <tr>
@@ -1223,48 +1224,48 @@ HTTP/1.1 200 OK
 <tr>
 <td>page</td>
 <td>get</td>
-<td style="text-align:center"><code>api/son-entryleri/:nick/:page?</code></td>
-<td><a href="/api/son-entryleri/ssg">/api/son-entryleri/ssg</a></td>
-<td><a href="/api/son-entryleri/kumasi-iyi-futbolcu/2">/api/son-entryleri/kumasi-iyi-futbolcu/2</a></td>
+<td style="text-align:center"><code>api/user/:nick/entries/:page?</code></td>
+<td><a href="/api/user/ssg/entries">/api/user/ssg/entries</a></td>
+<td><a href="/api/user/ssg/entries/2">/api/user/ssg/entries/2</a></td>
 <td>bir suserin son entrylerini getirir</td>
 </tr>
 <tr>
 <td>debe</td>
 <td>get</td>
-<td style="text-align:center"><code>api/debe</code></td>
-<td><a href="/api/debe">/api/debe</a></td>
+<td style="text-align:center"><code>api/index/debe</code></td>
+<td><a href="/api/index/debe">/api/index/debe</a></td>
 <td> </td>
 <td>debe'yi getirir</td>
 </tr>
 <tr>
 <td>user</td>
 <td>get</td>
-<td style="text-align:center"><code>api/biri/:nick</code></td>
-<td><a href="/api/biri/ssg">/api/biri/ssg</a></td>
+<td style="text-align:center"><code>api/user/:nick</code></td>
+<td><a href="/api/user/ssg">/api/user/ssg</a></td>
 <td> </td>
 <td>bir suser'ı getirir</td>
 </tr>
 <tr>
 <td>search</td>
 <td>get</td>
-<td style="text-align:center"><code>api/ara/:query</code></td>
-<td><a href="/api/ara/pena">/api/ara/pena</a></td>
-<td><a href="/api/ara/boston-celtics/4">/api/ara/boston celtics/4</a></td>
+<td style="text-align:center"><code>api/index/search/:query/:page?</code></td>
+<td><a href="/api/index/search/pena">/api/index/search/pena</a></td>
+<td><a href="/api/index/search/boston-celtics/4">/api/index/search/boston-celtics/4</a></td>
 <td>arama sonucu</td>
 </tr>
 <tr>
 <td>autoComplete</td>
 <td>get</td>
-<td style="text-align:center"><code>api/autocomplete/:query</code></td>
-<td><a href="/api/autocomplete/pena">/api/autocomplete/pena</a></td>
+<td style="text-align:center"><code>api/index/autocomplete/:query</code></td>
+<td><a href="/api/index/autocomplete/pena">/api/index/autocomplete/pena</a></td>
 <td> </td>
 <td>otomatik tamamlama</td>
 </tr>
 <tr>
 <td>allChannels</td>
 <td>get</td>
-<td style="text-align:center"><code>api/kanallar</code></td>
-<td><a href="/api/kanallar">/api/kanallar</a></td>
+<td style="text-align:center"><code>api/index/channels</code></td>
+<td><a href="/api/index/channels">/api/index/channels</a></td>
 <td> </td>
 <td>kanal kategorileri</td>
 </tr>
