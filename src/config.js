@@ -19,44 +19,7 @@ const user = {
 }
 
 const topic = {
-  allowRedirect: true,
-  // for easier configuration
-  enabledChannels: [
-    "haber",
-    "sinema",
-    "bilim",
-    "eğitim",
-    "spoiler",
-    "müzik",
-    "edebiyat",
-    "ekonomi",
-    "tarih",
-    "yeme-içme",
-    "ilişkiler",
-    "siyaset",
-    "teknoloji",
-    "sanat",
-    "moda",
-    "otomotiv",
-    "magazin",
-    "ekşi-sözlük",
-    "spor",
-    "motosiklet",
-    "sağlık",
-    "oyun",
-    "anket",
-    "programlama",
-    "tv",
-    "seyahat",
-    "havacılık",
-    "troll"
-  ],
-  enabledSubTopics: [
-    "gundem",
-    "sorunsal",
-    "tarihte-bugun",
-    "basiboslar"
-  ],
+  allowRedirect: true
 }
 
 const asyncRequestHeaders = { "X-Requested-With": "XMLHttpRequest" }
