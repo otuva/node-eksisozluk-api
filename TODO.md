@@ -7,7 +7,7 @@ EPlerin eksisozluge benzemesi gerekmiyor. daha kolay ve intuitive yapilabilir
 
 kullanici badge endpointi
 
-kullanici favlari EPI
+
 
 kullanici gorselleri
 
@@ -18,13 +18,16 @@ off apideki diger endpointler
 belki client sadece arsiv yapmak yerine normal viewer olarak da calisabilir.
 eger olursa sukela modunu eklemen gerek
 
-controllerlari anabasliklar altinda duzenle
 
 belki login ve kullanici islemleri endpointleri.
 
 firefox veya chromedan session token parselama secenegi?
 
 ---
+
+~~controllerlari anabasliklar altinda duzenle~~
+
+~~kullanici favlari EPI~~
 
 ~~disamb calismiyor duzelt~~
 
