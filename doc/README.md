@@ -890,10 +890,17 @@ req = axios.get("http://localhost:3000/api/index/channels").then(...)
 ## <a name='entry-sayfasini-getir.'></a> entry sayfasini getir.
 [Back to top](#top)
 
-<p>kullanicinin girdigi entry sayfalarini getiren endpoint.</p> <p>eger sayfa parametresi verilmezse ilk sayfayi dondurur.</p> <p>eger ilk sayfa ise ve kullanicinin sabitledigi bir entry varsa <code>entries</code> arrayindan once <code>pinnedEntry</code> objesi dondurur. formatin degistigi tek durum budur.</p> <p>diger sayfalarda ise veya sabitlenen entry yoksa sadece <code>entries</code> arrayi dondurur. null degeriyle bile olsa <code>pinnedEntry</code> diye bir bolum direkt yer almaz.</p>
+<p>kullanicinin girdigi entry sayfalarini getiren endpoint.</p> <p>eger sayfa parametresi verilmezse ilk sayfayi dondurur.</p> <p>eger ilk sayfa ise ve kullanicinin sabitledigi bir entry varsa <code>entries</code> arrayindan once <code>pinnedEntry</code> objesi dondurur. formatin degistigi tek durum budur.</p> <p>diger sayfalarda ise veya sabitlenen entry yoksa sadece <code>entries</code> arrayi dondurur. null degeriyle bile olsa <code>pinnedEntry</code> diye bir bolum direkt yer almaz.</p> <pre><code> 'entries': 'son-entryleri',
+    'favorites': 'favori-entryleri',
+    'most-favorited': 'en-cok-favorilenen-entryleri',
+    'last-voted': 'son-oylananlari',
+    'weekly': 'bu-hafta-dikkat-cekenleri',
+    'handicraft': 'el-emegi-goz-nuru',
+    'most-liked': 'en-begenilenleri',
+</code></pre>
 
 ```
-GET /api/user/:nick/entries/:page?
+GET /api/user/:nick/:choice/:page?
 ```
 
 ### Parameters - `Parameter`
@@ -901,6 +908,7 @@ GET /api/user/:nick/entries/:page?
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
 | nick | `String` | <p>kullanici nicki</p> |
+| choice | `String` | <p>getirelecek entry sayfasi kategorisi.</p>_Allowed values: "entries","favorites","most-favorited","last-voted","weekly","handicraft","most-liked"_ |
 | page | `Number` | **optional** <p>getirilecek sayfa</p>_Default value: 1_<br> |
 
 ### Examples
@@ -1201,8 +1209,8 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 <td>topicList</td>
 <td>get</td>
 <td style="text-align:center"><code>api/topic/list/:choice/:page?</code></td>
-<td><a href="/api/topic/gundem">/api/topic/gundem</a></td>
-<td><a href="/api/topic/basiboslar/3">/api/topic/basiboslar/3</a></td>
+<td><a href="/api/topic/list/gundem">/api/topic/list/gundem</a></td>
+<td><a href="/api/topic/basiboslar/3">/api/topic/list/basiboslar/3</a></td>
 <td>başlıkları getirir</td>
 </tr>
 <tr>
@@ -1224,10 +1232,10 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 <tr>
 <td>page</td>
 <td>get</td>
-<td style="text-align:center"><code>api/user/:nick/entries/:page?</code></td>
+<td style="text-align:center"><code>api/user/:nick/:choice/:page?</code></td>
 <td><a href="/api/user/ssg/entries">/api/user/ssg/entries</a></td>
-<td><a href="/api/user/ssg/entries/2">/api/user/ssg/entries/2</a></td>
-<td>bir suserin son entrylerini getirir</td>
+<td><a href="/api/user/ssg/entries/2">/api/user/ssg/weekly/2</a></td>
+<td>bir suserin entry sayfalarini getirir</td>
 </tr>
 <tr>
 <td>debe</td>
