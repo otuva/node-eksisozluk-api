@@ -8,11 +8,11 @@ const parseEntryDateTime = require('../../utils/entry/parseEntryDateTime');
 
 module.exports = async (nick, choice, page=1) => {
     let pageChoice, response;
-    if (PAGES[choice] === undefined) {
+    if (PAGES.ENTRY_PAGES[choice] === undefined) {
         return { error: ERRORS.PAGE.INVALID };
     }
     else {
-        pageChoice = PAGES[choice];
+        pageChoice = PAGES.ENTRY_PAGES[choice];
     }
 
     try {
