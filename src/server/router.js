@@ -4,6 +4,7 @@ const topicList = require('../controllers/topic/topicList');
 const entry = require('../controllers/entry/entry');
 const debe = require('../controllers/index/debe');
 const user = require('../controllers/user/user');
+const images = require('../controllers/user/images');
 const page = require('../controllers/user/page');
 const search = require('../controllers/index/search');
 const autoComplete = require('../controllers/index/autoComplete');
@@ -48,6 +49,12 @@ router.get('/index/debe', async (req, res, next) => {
   res.json(response);
 });
 
+/* GET user images */
+router.get('/user/:nick/images', async (req, res, next) => {
+  response = await images(req.params.nick);
+  res.json(response);
+});
+
 /* GET user entry pages */
 router.get('/user/:nick/:choice/:page?', async (req, res, next) => {
   response = await page(req.params.nick, req.params.choice, req.params.page);
@@ -59,6 +66,7 @@ router.get('/user/:nick', async (req, res, next) => {
   response = await user(req.params.nick);
   res.json(response);
 });
+
 
 /* GET search result */
 router.get('/index/search/:query/:page?', async (req, res, next) => {
