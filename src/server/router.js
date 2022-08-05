@@ -48,15 +48,15 @@ router.get('/index/debe', async (req, res, next) => {
   res.json(response);
 });
 
-/* GET user profile */
-router.get('/user/:nick', async (req, res, next) => {
-  response = await user(req.params.nick);
+/* GET user entry pages */
+router.get('/user/:nick/:choice/:page?', async (req, res, next) => {
+  response = await page(req.params.nick, req.params.choice, req.params.page);
   res.json(response);
 });
 
-/* GET user entry */
-router.get('/user/:nick/entries/:page?', async (req, res, next) => {
-  response = await page(req.params.nick,req.params.page);
+/* GET user profile */
+router.get('/user/:nick', async (req, res, next) => {
+  response = await user(req.params.nick);
   res.json(response);
 });
 
