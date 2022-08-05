@@ -38,6 +38,7 @@ npm start
   - [tum kanallari getir.](#tum-kanallari-getir.)
 - [kullanici](#kullanici)
   - [entry sayfasini getir.](#entry-sayfasini-getir.)
+  - [kullanici gorsellerini getir.](#kullanici-gorsellerini-getir.)
   - [tek kullanıcı getir.](#tek-kullanıcı-getir.)
 
 ___
@@ -1005,6 +1006,86 @@ req = axios.get("http://localhost:3000/api/user/ssg/entries").then(...)
 }
 ```
 
+## <a name='kullanici-gorsellerini-getir.'></a> kullanici gorsellerini getir.
+[Back to top](#top)
+
+<p>nick ile kullanici gorsellerini getiren endpoint.</p>
+
+```
+GET /user/:nick/images
+```
+
+### Parameters - `Parameter`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| nick | `String` | <p>kullanici nicki</p> |
+
+### Examples
+
+Example curl:
+
+```curl
+curl -i http://localhost:3000/api/user/ssg/images
+```
+
+Example python:
+
+```python
+import requests as r
+req = r.get("http://localhost:3000/api/user/ssg/images")
+```
+
+Example axios(js):
+
+```javascript
+req = axios.get("http://localhost:3000/api/user/ssg/images").then(...)
+```
+
+### Success response
+
+#### Success response - `200`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| images | `Object[]` | <p>gorsel arrayi.</p> |
+| images.slug | `String` | <p>gorselin slug hali.</p> |
+| images.imageURL | `String` | <p>gorselin full linki.</p> |
+| images.date | `Object` | <p>gorselin tarihi.</p> |
+| images.date.year | `String` | <p>gorselin tarihi yil.</p> |
+| images.date.month | `String` | <p>gorselin tarihi ay.</p> |
+| images.date.day | `String` | <p>gorselin tarihi gun.</p> |
+
+### Success response example
+
+#### Success response example - `Success-Response:`
+
+```json
+{
+  "images": [
+    {
+      "slug": "/img/x5zal9ig",
+      "imageURL": "'https://cdn.eksisozluk.com/2020/4/15/x/x5zal9ig.jpg'",
+      "date": {
+        "year": "2020",
+        "month": "4",
+        "day": "15"
+      }
+    },
+    {
+      "slug": "/img/at7lo6r6",
+      "imageURL": "'https://cdn.eksisozluk.com/2020/7/1/a/at7lo6r6.png'",
+      "date": {
+        "year": "2020",
+        "month": "7",
+        "day": "1"
+      }
+    },
+    ...
+    ]
+  }
+```
+
 ## <a name='tek-kullanıcı-getir.'></a> tek kullanıcı getir.
 [Back to top](#top)
 
@@ -1208,7 +1289,7 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 <td>get</td>
 <td style="text-align:center"><code>api/topic/:slug/:page?</code></td>
 <td><a href="/api/topic/pena">/api/topic/pena</a></td>
-<td><a href="/api/topic/gap-year/2">/api/topic/gap-year/2</a></td>
+<td><a href="/api/topic/gap%20year/2">/api/topic/gap year/2</a></td>
 <td>bir başlığı getirir</td>
 </tr>
 <tr>
@@ -1224,7 +1305,7 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 <td>get</td>
 <td style="text-align:center"><code>api/user/:nick/:choice/:page?</code></td>
 <td><a href="/api/user/ssg/entries">/api/user/ssg/entries</a></td>
-<td><a href="/api/user/ssg/entries/2">/api/user/ssg/weekly/2</a></td>
+<td><a href="/api/user/ssg/most-liked/2">/api/user/ssg/most-liked/2</a></td>
 <td>bir suserin entry sayfalarini getirir</td>
 </tr>
 <tr>
@@ -1248,7 +1329,7 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 <td>get</td>
 <td style="text-align:center"><code>api/index/search/:query/:page?</code></td>
 <td><a href="/api/index/search/pena">/api/index/search/pena</a></td>
-<td><a href="/api/index/search/boston-celtics/4">/api/index/search/boston-celtics/4</a></td>
+<td><a href="/api/index/search/boston%20celtics/4">/api/index/search/boston celtics/4</a></td>
 <td>arama sonucu</td>
 </tr>
 <tr>
@@ -1266,6 +1347,14 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 <td><a href="/api/index/channels">/api/index/channels</a></td>
 <td> </td>
 <td>kanal kategorileri</td>
+</tr>
+<tr>
+<td>images</td>
+<td>get</td>
+<td style="text-align:center"><code>api/user/:nick/images</code></td>
+<td><a href="/api/user/ssg/images">/api/user/ssg/images</a></td>
+<td> </td>
+<td>bir suserin gorsellerini getirir</td>
 </tr>
 </tbody>
 </table>
