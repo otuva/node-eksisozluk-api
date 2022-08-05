@@ -831,3 +831,60 @@ function autoComplete() { return; }
  * 
  */
 function allChannels() { return; }
+
+/**
+ * @api {get} /user/:nick/images kullanici gorsellerini getir.
+ * @apiName images
+ * @apiGroup kullanici
+ * @apiVersion 0.0.1
+ * 
+ * @apiExample {curl} Example curl:
+ *     curl -i http://localhost:3000/api/user/ssg/images
+ * @apiExample {python} Example python:
+ *     import requests as r
+ *     req = r.get("http://localhost:3000/api/user/ssg/images")
+ * @apiExample {javascript} Example axios(js):
+ *     req = axios.get("http://localhost:3000/api/user/ssg/images").then(...)
+ * 
+ * @apiDescription nick ile kullanici gorsellerini getiren endpoint.
+ * 
+ * @apiParam {String} nick kullanici nicki
+ * 
+ * @apiSuccess (200) {Object[]} images gorsel arrayi.
+ * 
+ * @apiSuccess (200) {String} images.slug gorselin slug hali.
+ * @apiSuccess (200) {String} images.imageURL gorselin full linki.
+ * @apiSuccess (200) {Object} images.date gorselin tarihi.
+ * @apiSuccess (200) {String} images.date.year gorselin tarihi yil.
+ * @apiSuccess (200) {String} images.date.month gorselin tarihi ay.
+ * @apiSuccess (200) {String} images.date.day gorselin tarihi gun.
+ * 
+ * @apiSuccessExample Success-Response:
+ * {
+  "images": [
+    {
+      "slug": "/img/x5zal9ig",
+      "imageURL": "'https://cdn.eksisozluk.com/2020/4/15/x/x5zal9ig.jpg'",
+      "date": {
+        "year": "2020",
+        "month": "4",
+        "day": "15"
+      }
+    },
+    {
+      "slug": "/img/at7lo6r6",
+      "imageURL": "'https://cdn.eksisozluk.com/2020/7/1/a/at7lo6r6.png'",
+      "date": {
+        "year": "2020",
+        "month": "7",
+        "day": "1"
+      }
+    },
+    ...
+    ]
+  }
+ * 
+ * 
+ *
+ */
+function images() { return; }
