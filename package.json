@@ -5,8 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "clear; node src/server.js",
-    "doc-md": "apidoc-markdown -i doc -o doc/README.md",
-    "doc-flush": "rm -r doc/public; apidoc -i doc -o doc/public",
+    "doc-flush": "command -v apidoc apidoc-markdown && rm -r doc/public; apidoc -i doc -o doc/public; apidoc-markdown -i doc -o doc/README.md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
