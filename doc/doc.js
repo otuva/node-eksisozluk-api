@@ -35,7 +35,6 @@
  * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
  * "totalTopicCount": 299,
  * "totalPageCount": 6,
@@ -112,7 +111,6 @@ function topicList() { return; }
  * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
  * "totalTopicCount": 150,
  * "totalPageCount": 3,
@@ -219,7 +217,6 @@ function topicList() { return; }
  * 
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
  * "topicID": 31872,
  * "disambiguations": [
@@ -324,7 +321,6 @@ function topic() { return; }
  * @apiSuccess (200) {String} entries.title entryin basligi.
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
  * "info": {
  *   "date": "2022-07-15",
@@ -387,7 +383,6 @@ function debe() { return; }
  * 
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
  * "id": 139730148,
  * "title": "simcity",
@@ -508,7 +503,6 @@ function entry() { return; }
  * @apiSuccess (200) {String} lastEntries.entries.aboutDateTime.updatedAtTime entryin guncellenme saati.
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
   "nick": "ssg",
   "isUserCaylak": false,
@@ -573,7 +567,7 @@ function entry() { return; }
 function user() { return; }
 
 /**
- * @api {get} /api/user/:nick/entries/:page? entry sayfasini getir.
+ * @api {get} /api/user/:nick/:choice/:page? entry sayfasini getir.
  * @apiName page
  * @apiGroup kullanici
  * @apiVersion 0.0.1
@@ -598,7 +592,18 @@ function user() { return; }
  * diger sayfalarda ise veya sabitlenen entry yoksa sadece `entries` arrayi dondurur. 
  * null degeriyle bile olsa `pinnedEntry` diye bir bolum direkt yer almaz.
  * 
+ * ```
+'entries': 'son-entryleri',
+'favorites': 'favori-entryleri',
+'most-favorited': 'en-cok-favorilenen-entryleri',
+'last-voted': 'son-oylananlari',
+'weekly': 'bu-hafta-dikkat-cekenleri',
+'handicraft': 'el-emegi-goz-nuru',
+'most-liked': 'en-begenilenleri',
+ * ```
+ * 
  * @apiParam {String} nick kullanici nicki
+ * @apiParam {String="entries","favorites","most-favorited","last-voted","weekly","handicraft","most-liked"} choice getirelecek entry sayfasi kategorisi.
  * @apiParam {Number} [page=1] getirilecek sayfa
  *
  * @apiSuccess (200) {Object} pinnedEntry `NOT:` sadece ilk sayfada return edilen standart entry objesi. Objenin yapisi alttaki entry objesi ile ayni.
@@ -626,7 +631,6 @@ function user() { return; }
  * 
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
   "entries": [
     {
@@ -704,7 +708,6 @@ function page() { return; }
  * @apiSuccess (200) {Number} topics.totalEntryCount basliktaki toplam entry sayisi
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
   "totalTopicCount": 52,
   "totalPageCount": 2,
@@ -761,7 +764,6 @@ function search() { return; }
  * @apiSuccess (200) {String[]} Nicks kullanici nicklerinin arrayi.
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
   "Titles": [
     "pena",
@@ -811,7 +813,6 @@ function autoComplete() { return; }
  * @apiSuccess (200) {String} channels.description kanalin açiklamasi.
  *
  * @apiSuccessExample Success-Response:
- * 
  * {
   "channels": [
     {
