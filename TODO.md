@@ -1,15 +1,12 @@
 arama sonuclarinda b yaziyorsa uc sifir ekle.
 
-<!--https://eksisozluk.com/23-ocak-2022-wolf-pubda-oldurulesiye-dovulmek--7154265--> 
+<!-- https://eksisozluk.com/23-ocak-2022-wolf-pubda-oldurulesiye-dovulmek--7154265 --> 
 eger baslikta pinlenmis entry varsa onu da dondur
 
-EPlerin eksisozluge benzemesi gerekmiyor. daha kolay ve intuitive yapilabilir
+gorsel tarihlerinin onune sifir ekle
 
 kullanici badge endpointi
 
-
-
-kullanici gorselleri
 
 gorsel endpointi 
 
@@ -36,6 +33,10 @@ firefox veya chromedan session token parselama secenegi?
 ~~tek bir baslik endpointi~~
 
 ~~kullanici, son entriler endpointini cagirsin. configde bu ozelligi kullansin mi diye sor~~
+
+~~kullanici gorselleri~~
+
+~~EPlerin eksisozluge benzemesi gerekmiyor. daha kolay ve intuitive yapilabilir~~
 
 ```
 /basliklar/gundem
