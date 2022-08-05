@@ -108,7 +108,6 @@ req = axios.get("http://localhost:3000/api/index/search/2022").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
   "totalTopicCount": 52,
   "totalPageCount": 2,
@@ -199,7 +198,6 @@ req = axios.get("http://localhost:3000/api/index/autocomplete/pena").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
   "Titles": [
     "pena",
@@ -298,7 +296,6 @@ req = axios.get("http://localhost:3000/api/topic/list/gundem").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
 "totalTopicCount": 299,
 "totalPageCount": 6,
@@ -412,7 +409,6 @@ req = axios.get("http://localhost:3000/api/topic/list/channel/haber").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
 "totalTopicCount": 150,
 "totalPageCount": 3,
@@ -544,7 +540,6 @@ req = axios.get("http://localhost:3000/api/topic/pena").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
 "topicID": 31872,
 "disambiguations": [
@@ -680,7 +675,6 @@ req = axios.get("http://localhost:3000/api/index/debe").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
 "info": {
   "date": "2022-07-15",
@@ -768,7 +762,6 @@ req = axios.get("http://localhost:3000/api/entry/139983585").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
 "id": 139730148,
 "title": "simcity",
@@ -867,7 +860,6 @@ req = axios.get("http://localhost:3000/api/index/channels").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
   "channels": [
     {
@@ -890,13 +882,13 @@ req = axios.get("http://localhost:3000/api/index/channels").then(...)
 ## <a name='entry-sayfasini-getir.'></a> entry sayfasini getir.
 [Back to top](#top)
 
-<p>kullanicinin girdigi entry sayfalarini getiren endpoint.</p> <p>eger sayfa parametresi verilmezse ilk sayfayi dondurur.</p> <p>eger ilk sayfa ise ve kullanicinin sabitledigi bir entry varsa <code>entries</code> arrayindan once <code>pinnedEntry</code> objesi dondurur. formatin degistigi tek durum budur.</p> <p>diger sayfalarda ise veya sabitlenen entry yoksa sadece <code>entries</code> arrayi dondurur. null degeriyle bile olsa <code>pinnedEntry</code> diye bir bolum direkt yer almaz.</p> <pre><code> 'entries': 'son-entryleri',
-    'favorites': 'favori-entryleri',
-    'most-favorited': 'en-cok-favorilenen-entryleri',
-    'last-voted': 'son-oylananlari',
-    'weekly': 'bu-hafta-dikkat-cekenleri',
-    'handicraft': 'el-emegi-goz-nuru',
-    'most-liked': 'en-begenilenleri',
+<p>kullanicinin girdigi entry sayfalarini getiren endpoint.</p> <p>eger sayfa parametresi verilmezse ilk sayfayi dondurur.</p> <p>eger ilk sayfa ise ve kullanicinin sabitledigi bir entry varsa <code>entries</code> arrayindan once <code>pinnedEntry</code> objesi dondurur. formatin degistigi tek durum budur.</p> <p>diger sayfalarda ise veya sabitlenen entry yoksa sadece <code>entries</code> arrayi dondurur. null degeriyle bile olsa <code>pinnedEntry</code> diye bir bolum direkt yer almaz.</p> <pre><code>'entries': 'son-entryleri',
+'favorites': 'favori-entryleri',
+'most-favorited': 'en-cok-favorilenen-entryleri',
+'last-voted': 'son-oylananlari',
+'weekly': 'bu-hafta-dikkat-cekenleri',
+'handicraft': 'el-emegi-goz-nuru',
+'most-liked': 'en-begenilenleri',
 </code></pre>
 
 ```
@@ -968,7 +960,6 @@ req = axios.get("http://localhost:3000/api/user/ssg/entries").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
   "entries": [
     {
@@ -1110,7 +1101,6 @@ req = axios.get("http://localhost:3000/api/user/ssg").then(...)
 #### Success response example - `Success-Response:`
 
 ```json
-
 {
   "nick": "ssg",
   "isUserCaylak": false,
