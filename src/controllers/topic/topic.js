@@ -15,14 +15,13 @@ module.exports = async (slug, page = 1) => {
     }
 
     if (response.request.path !== `/${slug}?p=${page}`) {
+        console.info(`/api/topic/${slug}/${page} --> /api/topic${response.request.path}/${page}`);
         if (config.topic.allowRedirect) {
             console.info(INFO.TOPIC.REDIRECTING);
-            console.info(`/api/topic/${slug}/${page} --> /api/topic${response.request.path}/${page}`);
             return { redirect: `/api/topic${response.request.path}/${page}` };
         }
         else {
             console.info(INFO.TOPIC.REDIRECTING_DISABLED);
-            console.info(`/api/topic/${slug}/${page} --> /api/topic${response.request.path}/${page}`);
         }
     }
 
