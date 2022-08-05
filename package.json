@@ -1,6 +1,6 @@
 {
   "name": "eksisozluk-api",
-  "version": "0.0.2",
+  "version": "0.0.20508",
   "description": "Latest unofficial eksisozluk api",
   "main": "main.js",
   "scripts": {
