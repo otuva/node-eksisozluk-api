@@ -833,7 +833,7 @@ function autoComplete() { return; }
 function allChannels() { return; }
 
 /**
- * @api {get} /user/:nick/images kullanici gorsellerini getir.
+ * @api {get} /api/user/:nick/images kullanici gorsellerini getir.
  * @apiName images
  * @apiGroup kullanici
  * @apiVersion 0.0.1
