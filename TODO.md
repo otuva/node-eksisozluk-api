@@ -7,6 +7,7 @@ gorsel tarihlerinin onune sifir ekle
 
 kullanici badge endpointi
 
+profildeki diger epler
 
 gorsel endpointi 
 
