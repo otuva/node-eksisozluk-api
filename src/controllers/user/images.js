@@ -19,8 +19,6 @@ module.exports = async (nick) => {
 
     const images = [];
 
-    console.log(response.data);
-
     $('li').each((index, element) => {
         const currentElement = $(element);
         const slug = currentElement.find('a').attr('href');
