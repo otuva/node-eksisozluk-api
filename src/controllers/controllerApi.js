@@ -1,15 +1,24 @@
 // export controllers as modules for inline api
 
 module.exports = {
-    entry: require('./entry/entry'),
-    user: require('./user/user'),
-    page: require('./user/page'),
-    allChannels: require('./index/allChannels'),
-    debe: require('./index/debe'),
-    images: require('./user/images'),
-    topicList: require('./topic/topicList'),
-    topic: require('./topic/topic'),
-    autoComplete: require('./index/autoComplete'),
-    search: require('./index/search'),
+    entry: {
+        getEntry: require('./entry/entry')
+    },
+    user: {
+        getUser: require('./user/user'),
+        getImages: require('./user/images'),
+        getPage: require('./user/page'),
+    },
+    index: {
+        getAllChannels: require('./index/allChannels'),
+        getDebe: require('./index/debe'),
+        getSearch: require('./index/search'),
+        getAutoComplete: require('./index/autoComplete'),
+
+    },
+    topic: {
+        getTopic: require('./topic/topic'),
+        getTopicList: require('./topic/topicList'),
+    },
     startServer: require('../server').startServer
 }
