@@ -33,13 +33,13 @@ eksisozluk # run
 Ornek:</p>
 <pre><code class="language-js">const eksisozluk = require('eksisozluk-api');
 
-eksisozluk.entry('1').then(
+eksisozluk.entry.getEntry('1').then(
     (data) => {
         console.log(data);
     }
 );
 
-eksisozluk.user('ssg').then(
+eksisozluk.user.getUser('ssg').then(
     (data) => {
         console.log(data);
     }
