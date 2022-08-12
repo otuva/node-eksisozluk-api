@@ -1,3 +1,5 @@
+# Bunun ismini eksi crawler falan yap. eksi apiyi official apiyi kullanan bir sey yapabilirsin 
+
 # yeni endpoint ekleme checklist
 - doc/doc.js guncelle
 - ./readme guncelle
