@@ -17,6 +17,24 @@ arama sonuclarinda b yaziyorsa uc sifir ekle.
 
 controller importlarini sirala duzenle
 
+belki entry epdeki gereksiz kisimlari temizle. cok da onemi yok 
+
+apideki kisimlari official apidekine benzer olsun diye isimlerini degistir. birebir ayni olmasi gerekmiyor
+
+apiyi zaple test et
+
+ucuz bir servera deploy et. clientda api linki secebilme olmali. direkt localdeki bir sunucuyu ya da remote sunucuyu kullanabilsin
+
+rate limitingi test et. rate limitinge takilinca belki diger instancelarin linkini gosterebilir nitter tarzi
+
+no cache koy caching tamamen clientda olmali
+
+helmet ve cors doc bak
+
+mobil client kotlinle. iosa daha kolay app olsun diye react native de olabilir ama iosa appini cikaracagimi sanmam. dusun
+
+desktop client node ile gene. browser ustu olsun istiyorum normal eksi sozluk deneyimi gibi.
+
 fonksiyonlara jsdoc ekle 
 
 <!-- https://eksisozluk.com/23-ocak-2022-wolf-pubda-oldurulesiye-dovulmek--7154265 --> 
@@ -26,19 +44,22 @@ gorsel tarihlerinin onune sifir ekle
 
 kullanici badge endpointi
 
+user epde son entry girilen tarihi dondur. pinli olmayan son entrynin tarih deltasini alip goster
+
+pinli entryi last entries altinda dondurmek yerine direkt user altinda dondurebilirsin. dusun
+
 profildeki diger epler
 
-gorsel endpointi 
+gorsel b64 endpointi (belki gerekli olmayabilir gorselin arsivlenmesini client yapabilir)
 
 off apideki diger endpointler
 
 belki client sadece arsiv yapmak yerine normal viewer olarak da calisabilir.
 eger olursa sukela modunu eklemen gerek
 
+belki login ve kullanici islemleri endpointleri? belki sonra. official apiyi kullanmadan giris yapabilsin. surekli girisi engellemek icin postda remember me objesi yolla  
 
-belki login ve kullanici islemleri endpointleri.
-
-firefox veya chromedan session token parselama secenegi?
+firefox veya chromedan session token parselama secenegi? geregi oldugunu sanmam newpipe gibi tamamen anonim ve tum kayitlarin (fav, arama gecmisi) vs. localde tutulmasi daha mantikli
 
 ---
 
