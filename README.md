@@ -2,10 +2,10 @@
 
 ## Resmi olmayan eksisozluk api
 
-Ekşi sözlük için geliştirilmiş node api modulu ve express tabanlı REST API.
+Ekşi sözlük için geliştirilmiş node api modulu ve express tabanlı REST API Server.
 Ekşisözlükten çekilen veriler json formatında kullanıcıya geri döndürülür
 
-Eksisozluge son gelen arayuz guncellemesine gore crawl eder.
+Eksisozluge son gelen arayuz guncellemesine gore crawl eder. (cheerio ve axios)
 
 Icinde bir client yoktur.
 Bu apiyi kullanacak daha yazilmamis client icin [tiklayin](https://github.com/otuva/EksiArchive)
