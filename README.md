@@ -1,4 +1,4 @@
-# eksisozluk-api
+# eksisozluk-api (calismiyor olabilir)
 
 ## Resmi olmayan eksisozluk api
 
